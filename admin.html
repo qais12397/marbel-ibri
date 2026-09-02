@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>لوحة إدارة المنتجات | Global Shining Rocks Admin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-main: #121714;
+  --bg-panel: #1A211D;
+  --bg-card: #222B25;
+  --sand-gold: #C5A880;
+  --sand-soft: #E0D3C1;
+  --oxide: #8C4A22;
+  --oxide-hover: #A5582A;
+  --text-white: #FFFFFF;
+  --text-muted: #9EABA1;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-gold: rgba(197, 168, 128, 0.35);
+  
+  --font-serif: "Cinzel", "Outfit", serif;
+  --font-sans: "Outfit", sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--bg-main);
+  color: var(--text-white);
+  font-family: var(--font-arabic);
+  font-size: 15px;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+body[dir="ltr"] {
+  font-family: var(--font-sans);
+}
+
+.wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Top Navbar Matching Mockup ---------- */
+header {
+  background: var(--bg-panel);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+.brand-group {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #FFFFFF;
+}
+.brand-icon {
+  width: 40px;
+  height: 40px;
+  background: var(--oxide);
+  color: #fff;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: 18px;
+}
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.brand-divider {
+  height: 24px;
+  width: 1px;
+  background: var(--border);
+}
+.dashboard-badge {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--sand-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.user-nav {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border);
+  border-radius: 50px;
+}
+.user-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--sand-gold);
+  color: var(--bg-main);
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: 13px;
+}
+.user-details {
+  font-size: 12.5px;
+  line-height: 1.2;
+}
+.user-details strong { display: block; color: #fff; }
+.user-details span { color: var(--sand-gold); font-size: 10.5px; font-family: var(--font-mono); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 9px 18px;
+  border-radius: 6px;
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid transparent;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  font-family: inherit;
+}
+.btn-primary {
+  background: var(--oxide);
+  color: #FFFFFF;
+}
+.btn-primary:hover {
+  background: var(--oxide-hover);
+  transform: translateY(-1px);
+}
+.btn-outline {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--text-white);
+}
+.btn-outline:hover {
+  border-color: var(--sand-gold);
+  background: rgba(255, 255, 255, 0.05);
+}
+.btn-danger {
+  background: rgba(198, 40, 40, 0.18);
+  border-color: #EF5350;
+  color: #FFCDD2;
+}
+.btn-danger:hover {
+  background: #C62828;
+  color: #fff;
+}
+.btn-sm {
+  padding: 6px 12px;
+  font-size: 12px;
+}
+
+/* ---------- Stat Cards Grid (Matching Mockup) ---------- */
+.stats-container {
+  padding: 32px 0 24px;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+.stat-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 110px;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  height: 3px;
+  background: var(--sand-gold);
+  opacity: 0.6;
+}
+.stat-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.stat-title {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+.stat-icon {
+  font-size: 18px;
+  color: var(--sand-gold);
+  opacity: 0.8;
+}
+.stat-value {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: #FFFFFF;
+  line-height: 1;
+  margin-top: 10px;
+}
+body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
+
+/* ---------- Actions & Search Bar (Matching Mockup) ---------- */
+.actions-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+.search-wrapper {
+  position: relative;
+  flex: 1;
+  max-width: 480px;
+}
+.search-wrapper input {
+  width: 100%;
+  padding: 12px 18px;
+  padding-inline-start: 42px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: #fff;
+  font-size: 14px;
+  outline: none;
+  font-family: inherit;
+}
+.search-wrapper input:focus {
+  border-color: var(--sand-gold);
+}
+.search-icon {
+  position: absolute;
+  top: 50%;
+  inset-inline-start: 14px;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+
+/* ---------- Products Grid (Matching Mockup) ---------- */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  gap: 22px;
+  margin-bottom: 60px;
+}
+.product-card {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+.product-card:hover {
+  border-color: var(--sand-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+}
+.product-card-media {
+  height: 190px;
+  position: relative;
+  background: #0D110E;
+}
+.product-card-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.status-pill {
+  position: absolute;
+  top: 12px;
+  inset-inline-start: 12px;
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 10.5px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.status-active {
+  background: rgba(129, 199, 132, 0.2);
+  color: #81C784;
+  border: 1px solid rgba(129, 199, 132, 0.4);
+}
+.status-draft {
+  background: rgba(229, 115, 115, 0.2);
+  color: #E57373;
+  border: 1px solid rgba(229, 115, 115, 0.4);
+}
+
+.product-card-body {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.product-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin-bottom: 12px;
+  line-height: 1.3;
+}
+.product-specs-list {
+  list-style: none;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  margin-bottom: 20px;
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+  padding: 10px 14px;
+}
+.product-specs-list li {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.product-specs-list li:last-child { border-bottom: none; }
+.product-specs-list span { color: var(--text-muted); }
+.product-specs-list strong { color: var(--sand-gold); }
+
+.product-card-footer {
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 8px;
+}
+.product-card-footer button {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  padding: 8px 4px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+}
+.btn-edit-card {
+  background: var(--oxide);
+  color: #FFFFFF;
+}
+.btn-edit-card:hover { background: var(--oxide-hover); }
+.btn-toggle-card {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: var(--border);
+  color: #FFFFFF;
+}
+.btn-toggle-card:hover { background: rgba(255, 255, 255, 0.12); }
+.btn-delete-card {
+  background: rgba(198, 40, 40, 0.15);
+  border-color: rgba(229, 115, 115, 0.3);
+  color: #FF8A80;
+}
+.btn-delete-card:hover { background: #C62828; color: #fff; }
+
+/* ---------- Modal Styles ---------- */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  place-items: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+.modal-overlay.open { display: grid; }
+.modal-box {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 760px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.6);
+  animation: modalScale 0.2s ease-out;
+}
+@keyframes modalScale {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: scale(1); }
+}
+.modal-head {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal-head h2 { font-size: 18px; font-weight: 700; color: var(--sand-gold); }
+.modal-close {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 26px;
+  cursor: pointer;
+  line-height: 1;
+}
+.modal-body {
+  padding: 28px;
+  max-height: calc(85vh - 140px);
+  overflow-y: auto;
+}
+.modal-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.modal-grid .col-2 { grid-column: 1 / -1; }
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+.form-field label {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  color: var(--sand-gold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.form-field input, .form-field select, .form-field textarea {
+  width: 100%;
+  padding: 10px 14px;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  color: #fff;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+}
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus {
+  border-color: var(--sand-gold);
+}
+.image-preview-area {
+  width: 100%;
+  height: 170px;
+  border: 2px dashed var(--border);
+  border-radius: 6px;
+  background: var(--bg-main);
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  margin-top: 8px;
+}
+.image-preview-area img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-footer {
+  padding: 18px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  background: rgba(0,0,0,0.15);
+}
+
+/* Login Card */
+.login-container {
+  min-height: 80vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.login-box {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-panel);
+  border: 1px solid var(--border-gold);
+  border-radius: 12px;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+}
+
+/* Toast */
+.toast-notice {
+  position: fixed;
+  bottom: 24px;
+  inset-inline-start: 24px;
+  background: var(--bg-panel);
+  border: 1px solid var(--sand-gold);
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  z-index: 2000;
+  display: none;
+}
+
+@media(max-width:960px){
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .modal-grid { grid-template-columns: 1fr; }
+}
+@media(max-width:600px){
+  .stats-grid { grid-template-columns: 1fr; }
+  .user-details { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- Login View -->
+<div id="loginView" class="login-container">
+  <div class="login-box">
+    <div class="brand-icon" style="margin:0 auto 16px;width:52px;height:52px;font-size:24px;">GSR</div>
+    <h2 style="font-family:var(--font-serif);margin-bottom:6px;font-size:22px;">GLOBAL SHINING ROCKS</h2>
+    <p style="color:var(--sand-gold);font-family:var(--font-mono);font-size:12px;margin-bottom:28px;">ADMIN CONTROL PANEL</p>
+
+    <form onsubmit="doLogin(event)">
+      <div class="form-field" style="text-align:start;">
+        <label id="lblLoginEmail">البريد الإلكتروني</label>
+        <input type="text" id="inEmail" required autocomplete="username">
+      </div>
+      <div class="form-field" style="text-align:start;">
+        <label>كلمة المرور</label>
+        <input type="password" id="inPass" required autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px;padding:12px;">تسجيل الدخول</button>
+    </form>
+
+    <div id="loginModeNotice" style="margin-top:20px;padding:10px;background:rgba(255,255,255,0.04);border-radius:6px;font-family:var(--font-mono);font-size:11.5px;color:var(--sand-soft);text-align:start;"></div>
+  </div>
+</div>
+
+<!-- Main Dashboard View -->
+<div id="dashboardView" style="display:none;">
+  <!-- Top Navigation matching Mockup -->
+  <header>
+    <div class="wrap navbar">
+      <div class="brand-group">
+        <a href="#" class="brand-logo">
+          <div class="brand-icon">GSR</div>
+          <span class="brand-title">GLOBAL SHINING ROCKS</span>
+        </a>
+        <div class="brand-divider"></div>
+        <span class="dashboard-badge" id="lblDashBadge">ADMIN DASHBOARD</span>
+      </div>
+
+      <div class="user-nav">
+        <div class="user-profile">
+          <div class="user-avatar">AM</div>
+          <div class="user-details">
+            <strong id="lblUserName">Ahmed Al-Mansoori</strong>
+            <span id="lblUserRole">Chief Operations &middot; Admin</span>
+          </div>
+        </div>
+
+        <button class="btn btn-outline btn-sm" onclick="toggleAdminLang()" id="btnAdminLang">English</button>
+        <a href="index.html" target="_blank" class="btn btn-outline btn-sm"><span>↗</span> <span id="lblViewSite">معاينة الموقع</span></a>
+        <button class="btn btn-outline btn-sm" onclick="openCloudModal()">⚙️ <span id="lblConfig">النسخ الاحتياطي</span></button>
+        <button class="btn btn-danger btn-sm" onclick="doLogout()" id="lblLogout">خروج</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- Top Stats Cards matching Mockup -->
+    <div class="stats-container">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title" id="statLbl1">TOTAL PRODUCTS</span>
+            <span class="stat-icon">📦</span>
+          </div>
+          <div class="stat-value" id="statCountTotal">4</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title" id="statLbl2">ACTIVE STONES</span>
+            <span class="stat-icon">✓</span>
+          </div>
+          <div class="stat-value" id="statCountActive">4</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title" id="statLbl3">PRIMARY QUARRY</span>
+            <span class="stat-icon">📍</span>
+          </div>
+          <div class="stat-value" style="font-size:24px;color:var(--sand-gold)" id="statQuarryLoc">IBRI</div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-header">
+            <span class="stat-title" id="statLbl4">STOCK INVENTORY</span>
+            <span class="stat-icon">🏗️</span>
+          </div>
+          <div class="stat-value" id="statInventory">4,120 <span style="font-size:16px;color:var(--sand-soft)">m²</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions & Search Bar matching Mockup -->
+    <div class="actions-bar">
+      <div class="search-wrapper">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchBox" placeholder="البحث في أصناف الرخام..." oninput="renderDashboardList()">
+      </div>
+
+      <button class="btn btn-primary" onclick="openAddProductModal()" id="btnAddStone">
+        <span>+</span> <span id="lblAddStone">إضافة حجر / منتج جديد</span>
+      </button>
+    </div>
+
+    <!-- Products Grid Cards matching Mockup -->
+    <div class="products-grid" id="adminCardsContainer">
+      <!-- Injected by JavaScript -->
+    </div>
+  </main>
+</div>
+
+<!-- Add / Edit Modal -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <div class="modal-head">
+      <h2 id="modalHeadTitle">إضافة صنف رخام جديد</h2>
+      <button class="modal-close" onclick="closeProductModal()">&times;</button>
+    </div>
+    <form id="productForm" onsubmit="saveProductItem(event)">
+      <input type="hidden" id="editId">
+      <div class="modal-body">
+        <div class="modal-grid">
+          <div class="form-field">
+            <label>اسم الحجر (بالعربية) *</label>
+            <input type="text" id="mNameAr" required placeholder="مثال: رخام كريستال أبيض عُماني">
+          </div>
+          <div class="form-field">
+            <label>Product Name (English) *</label>
+            <input type="text" id="mNameEn" required placeholder="e.g. Crystal White Omani">
+          </div>
+
+          <div class="form-field col-2">
+            <label>الوصف (عربي)</label>
+            <textarea id="mDescAr" placeholder="وصف موجز للمنتج..."></textarea>
+          </div>
+          <div class="form-field col-2">
+            <label>Description (English)</label>
+            <textarea id="mDescEn" placeholder="Brief description..."></textarea>
+          </div>
+
+          <div class="form-field col-2">
+            <label>رابط الصورة أو رفع ملف</label>
+            <div style="display:flex;gap:10px;">
+              <input type="text" id="mImage" placeholder="https://..." oninput="previewImage()">
+              <label class="btn btn-outline" style="cursor:pointer;white-space:nowrap;">
+                📁 رفع ملف
+                <input type="file" accept="image/*" style="display:none;" onchange="handleImageFile(event)">
+              </label>
+            </div>
+            <div class="image-preview-area" id="imgPreview">
+              <span style="color:var(--text-muted);font-size:12px;font-family:var(--font-mono)">معاينة الصورة</span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>الكثافة (Density - kg/m³)</label>
+            <input type="text" id="mDensity" placeholder="2680">
+          </div>
+          <div class="form-field">
+            <label>مقاومة الضغط (Comp. Strength - MPa)</label>
+            <input type="text" id="mCompressive" placeholder="128">
+          </div>
+
+          <div class="form-field">
+            <label>مقاومة الانحناء (Flexural Strength - MPa)</label>
+            <input type="text" id="mFlexural" placeholder="14.2">
+          </div>
+          <div class="form-field">
+            <label>امتصاص الماء (Water Absorption - %)</label>
+            <input type="text" id="mWater" placeholder="0.16">
+          </div>
+
+          <div class="form-field">
+            <label>التشطيبات (عربي)</label>
+            <input type="text" id="mFinishesAr" placeholder="مصقول / مطفي / معتق">
+          </div>
+          <div class="form-field">
+            <label>Finishes (English)</label>
+            <input type="text" id="mFinishesEn" placeholder="Polished / Honed / Antique">
+          </div>
+
+          <div class="form-field">
+            <label>السماكة (Thickness AR)</label>
+            <input type="text" id="mThicknessAr" placeholder="٢٠ ملم، ٣٠ ملم">
+          </div>
+          <div class="form-field">
+            <label>Thickness (EN)</label>
+            <input type="text" id="mThicknessEn" placeholder="20mm, 30mm">
+          </div>
+
+          <div class="form-field col-2">
+            <label>حالة العرض على الموقع</label>
+            <select id="mActive">
+              <option value="true">نشط ومعروض (Active)</option>
+              <option value="false">مخفي مؤقتاً (Hidden / Draft)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeProductModal()">إلغاء</button>
+        <button type="submit" class="btn btn-primary">حفظ المنتج وتحديث الموقع</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- Cloud Settings Modal -->
+<div class="modal-overlay" id="cloudModal">
+  <div class="modal-box" style="max-width:520px;">
+    <div class="modal-head">
+      <h2>النسخ الاحتياطي وإعدادات السحابة</h2>
+      <button class="modal-close" onclick="closeCloudModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:24px;">
+        <button class="btn btn-outline btn-sm" onclick="exportDataFile()">📥 تصدير نسخة احتياطية (JSON)</button>
+        <label class="btn btn-outline btn-sm" style="cursor:pointer;">
+          📤 استيراد نسخة (JSON)
+          <input type="file" accept=".json" style="display:none;" onchange="importDataFile(event)">
+        </label>
+        <button class="btn btn-danger btn-sm" onclick="resetToFactory()">إعادة ضبط المصنع</button>
+      </div>
+
+      <hr style="border-color:var(--border);margin-bottom:20px;">
+      <h3 style="font-size:14px;color:var(--sand-gold);margin-bottom:12px;">حالة الاتصال بقاعدة بيانات Supabase</h3>
+      <p id="cloudStatusText" style="font-size:13px;line-height:1.7;color:var(--sand-soft);"></p>
+      <p style="font-size:11.5px;color:var(--text-muted);font-family:var(--font-mono);margin-top:10px;">
+        لتفعيل/تغيير الاتصال، عدّل ملف js/config.js في المشروع (وليس من هذه الشاشة) ثم أعد رفعه.
+      </p>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-outline" onclick="closeCloudModal()">إغلاق</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast-notice"></div>
+
+<!-- Shared Store -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+
+<script>
+var isAr = localStorage.getItem('admin_lang') !== 'en'; // default Arabic
+
+function showToast(msg) {
+  var t = document.getElementById('toast');
+  if (t) {
+    t.textContent = msg;
+    t.style.display = 'block';
+    setTimeout(function(){ t.style.display = 'none'; }, 3000);
+  }
+}
+
+function updateLoginModeNotice() {
+  var notice = document.getElementById('loginModeNotice');
+  var lblEmail = document.getElementById('lblLoginEmail');
+  if (!notice) return;
+  if (window.ProductStore && window.ProductStore.isCloudEnabled()) {
+    notice.innerHTML = isAr
+      ? '<strong>وضع الإنتاج:</strong> سجّل الدخول بحساب المسؤول الذي أنشأته في Supabase (Authentication → Users).'
+      : '<strong>Production mode:</strong> log in with the admin account created in Supabase (Authentication → Users).';
+    if (lblEmail) lblEmail.textContent = isAr ? 'البريد الإلكتروني' : 'Email';
+  } else {
+    notice.innerHTML = isAr
+      ? '<strong>وضع تجريبي محلي:</strong> غير متصل بقاعدة بيانات بعد. المستخدم: <code>admin</code> — كلمة المرور: <code>oman2026</code>. التعديلات هنا تبقى على هذا الجهاز فقط.'
+      : '<strong>Local demo mode:</strong> not connected to a database yet. User: <code>admin</code> — Password: <code>oman2026</code>. Edits here stay on this device only.';
+    if (lblEmail) lblEmail.textContent = isAr ? 'اسم المستخدم أو البريد' : 'Username or Email';
+  }
+}
+
+async function checkAuth() {
+  updateLoginModeNotice();
+  var session = window.ProductStore ? await window.ProductStore.getSessionAsync() : null;
+  document.getElementById('loginView').style.display = session ? 'none' : 'grid';
+  document.getElementById('dashboardView').style.display = session ? 'block' : 'none';
+  if (session) {
+    if (window.ProductStore.isCloudEnabled()) {
+      await window.ProductStore.refreshFromCloud();
+    }
+    renderDashboardList();
+  }
+}
+
+async function doLogin(e) {
+  e.preventDefault();
+  var email = document.getElementById('inEmail').value;
+  var pass = document.getElementById('inPass').value;
+  var res = await window.ProductStore.login(email, pass);
+  if (res.success) {
+    showToast(isAr ? 'تم تسجيل الدخول بنجاح' : 'Logged in successfully');
+    checkAuth();
+  } else {
+    alert(res.error);
+  }
+}
+
+async function doLogout() {
+  if (confirm(isAr ? 'هل تريد تسجيل الخروج؟' : 'Are you sure you want to log out?')) {
+    await window.ProductStore.clearSession();
+    checkAuth();
+  }
+}
+
+function toggleAdminLang() {
+  isAr = !isAr;
+  localStorage.setItem('admin_lang', isAr ? 'ar' : 'en');
+  applyAdminLanguage();
+}
+
+function applyAdminLanguage() {
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+  document.documentElement.lang = isAr ? 'ar' : 'en';
+  document.body.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+
+  document.getElementById('btnAdminLang').textContent = isAr ? 'English' : 'العربية';
+  document.getElementById('lblDashBadge').textContent = isAr ? 'لوحة تحكم الإدارة' : 'ADMIN DASHBOARD';
+  document.getElementById('lblViewSite').textContent = isAr ? 'معاينة الموقع' : 'View Live Site';
+  document.getElementById('lblConfig').textContent = isAr ? 'النسخ الاحتياطي' : 'Backup & Cloud';
+  document.getElementById('lblLogout').textContent = isAr ? 'خروج' : 'Logout';
+  document.getElementById('lblAddStone').textContent = isAr ? 'إضافة حجر / منتج جديد' : 'ADD NEW STONE PRODUCT';
+  document.getElementById('searchBox').placeholder = isAr ? 'البحث في أصناف الرخام...' : 'Search Stone Products...';
+
+  document.getElementById('statLbl1').textContent = isAr ? 'إجمالي المنتجات' : 'TOTAL PRODUCTS';
+  document.getElementById('statLbl2').textContent = isAr ? 'الأصناف النشطة' : 'ACTIVE STONES';
+  document.getElementById('statLbl3').textContent = isAr ? 'المحجر الرئيسي' : 'PRIMARY QUARRY';
+  document.getElementById('statLbl4').textContent = isAr ? 'المخزون المتوفر' : 'STOCK INVENTORY';
+  document.getElementById('statQuarryLoc').textContent = isAr ? 'عبري' : 'IBRI';
+
+  updateLoginModeNotice();
+  renderDashboardList();
+}
+
+function renderDashboardList() {
+  if (!window.ProductStore) return;
+  var container = document.getElementById('adminCardsContainer');
+  var allProducts = window.ProductStore.getProducts(false);
+  var q = (document.getElementById('searchBox')?.value || '').toLowerCase().trim();
+
+  var products = allProducts;
+  if (q) {
+    products = products.filter(function(p){
+      return (p.name_ar && p.name_ar.toLowerCase().includes(q)) ||
+             (p.name_en && p.name_en.toLowerCase().includes(q));
+    });
+  }
+
+  // Update Counters
+  document.getElementById('statCountTotal').textContent = allProducts.length;
+  document.getElementById('statCountActive').textContent = allProducts.filter(function(p){ return p.active !== false; }).length;
+
+  if (products.length === 0) {
+    container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;background:var(--bg-panel);border:1px dashed var(--border);border-radius:10px;color:var(--text-muted);">'
+      + (isAr ? 'لا توجد نتائج مطابقة' : 'No matching products found')
+      + '</div>';
+    return;
+  }
+
+  container.innerHTML = '';
+  products.forEach(function(p){
+    var title = (p.name_en || '') + ' | ' + (p.name_ar || '');
+    if (isAr) {
+      title = (p.name_ar || '') + ' | ' + (p.name_en || '');
+    }
+    var isActive = p.active !== false;
+    var img = p.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+
+    var card = document.createElement('div');
+    card.className = 'product-card';
+    card.innerHTML = 
+      '<div class="product-card-media">' +
+        '<img src="' + img + '" alt="' + title + '" onerror="this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\'">' +
+        '<span class="status-pill ' + (isActive ? 'status-active' : 'status-draft') + '">' +
+          (isActive ? (isAr ? 'معروض نشط' : 'ACTIVE') : (isAr ? 'مخفي' : 'HIDDEN')) +
+        '</span>' +
+      '</div>' +
+      '<div class="product-card-body">' +
+        '<h3 class="product-card-title">' + title + '</h3>' +
+        '<ul class="product-specs-list">' +
+          '<li><span>' + (isAr ? 'الكثافة:' : 'Density:') + '</span><strong>' + (p.density || '2680') + ' kg/m³</strong></li>' +
+          '<li><span>' + (isAr ? 'مقاومة الضغط:' : 'Comp. Strength:') + '</span><strong>' + (p.compressive_strength || '128') + ' MPa</strong></li>' +
+          '<li><span>' + (isAr ? 'مقاومة الانحناء:' : 'Flexural Strength:') + '</span><strong>' + (p.flexural_strength || '14.2') + ' MPa</strong></li>' +
+          '<li><span>' + (isAr ? 'امتصاص الماء:' : 'Water Absorption:') + '</span><strong>' + (p.water_absorption || '0.16') + ' %</strong></li>' +
+        '</ul>' +
+        '<div class="product-card-footer">' +
+          '<button class="btn-edit-card" onclick="editProductItem(\'' + p.id + '\')">' + (isAr ? 'تعديل' : 'EDIT PRODUCT') + '</button>' +
+          '<button class="btn-toggle-card" onclick="toggleVisibilityItem(\'' + p.id + '\')">' + (isActive ? (isAr ? 'إخفاء' : 'HIDE') : (isAr ? 'إظهار' : 'SHOW')) + '</button>' +
+          '<button class="btn-delete-card" onclick="deleteStoneItem(\'' + p.id + '\')">' + (isAr ? 'حذف' : 'DELETE') + '</button>' +
+        '</div>' +
+      '</div>';
+    container.appendChild(card);
+  });
+}
+
+function openAddProductModal() {
+  document.getElementById('productForm').reset();
+  document.getElementById('editId').value = '';
+  document.getElementById('modalHeadTitle').textContent = isAr ? 'إضافة صنف رخام جديد' : 'Add New Stone Product';
+  document.getElementById('imgPreview').innerHTML = '<span style="color:var(--text-muted);font-size:12px;font-family:var(--font-mono)">' + (isAr ? 'معاينة الصورة' : 'Image Preview') + '</span>';
+  document.getElementById('productModal').classList.add('open');
+}
+
+function closeProductModal() {
+  document.getElementById('productModal').classList.remove('open');
+}
+
+function editProductItem(id) {
+  var p = window.ProductStore.getProductById(id);
+  if (!p) return;
+  document.getElementById('modalHeadTitle').textContent = isAr ? 'تعديل بيانات الحجر' : 'Edit Stone Product';
+  document.getElementById('editId').value = p.id;
+  document.getElementById('mNameAr').value = p.name_ar || '';
+  document.getElementById('mNameEn').value = p.name_en || '';
+  document.getElementById('mDescAr').value = p.desc_ar || '';
+  document.getElementById('mDescEn').value = p.desc_en || '';
+  document.getElementById('mImage').value = p.image || '';
+  document.getElementById('mDensity').value = p.density || '';
+  document.getElementById('mCompressive').value = p.compressive_strength || '';
+  document.getElementById('mFlexural').value = p.flexural_strength || '';
+  document.getElementById('mWater').value = p.water_absorption || '';
+  document.getElementById('mFinishesAr').value = p.finishes_ar || '';
+  document.getElementById('mFinishesEn').value = p.finishes_en || '';
+  document.getElementById('mThicknessAr').value = p.thickness_ar || '';
+  document.getElementById('mThicknessEn').value = p.thickness_en || '';
+  document.getElementById('mActive').value = p.active !== false ? 'true' : 'false';
+  previewImage();
+  document.getElementById('productModal').classList.add('open');
+}
+
+function previewImage() {
+  var url = document.getElementById('mImage').value.trim();
+  var box = document.getElementById('imgPreview');
+  if (url) {
+    box.innerHTML = '<img src="' + url + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">';
+  } else {
+    box.innerHTML = '<span style="color:var(--text-muted);font-size:12px;font-family:var(--font-mono)">' + (isAr ? 'معاينة الصورة' : 'Image Preview') + '</span>';
+  }
+}
+
+function handleImageFile(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(evt) {
+    document.getElementById('mImage').value = evt.target.result;
+    previewImage();
+  };
+  reader.readAsDataURL(file);
+}
+
+async function saveProductItem(e) {
+  e.preventDefault();
+  var id = document.getElementById('editId').value;
+  var item = {
+    id: id || undefined,
+    name_ar: document.getElementById('mNameAr').value.trim(),
+    name_en: document.getElementById('mNameEn').value.trim(),
+    desc_ar: document.getElementById('mDescAr').value.trim(),
+    desc_en: document.getElementById('mDescEn').value.trim(),
+    image: document.getElementById('mImage').value.trim() || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    density: document.getElementById('mDensity').value.trim() || '2680',
+    compressive_strength: document.getElementById('mCompressive').value.trim() || '128',
+    flexural_strength: document.getElementById('mFlexural').value.trim() || '14.2',
+    water_absorption: document.getElementById('mWater').value.trim() || '0.16',
+    finishes_ar: document.getElementById('mFinishesAr').value.trim(),
+    finishes_en: document.getElementById('mFinishesEn').value.trim(),
+    thickness_ar: document.getElementById('mThicknessAr').value.trim(),
+    thickness_en: document.getElementById('mThicknessEn').value.trim(),
+    active: document.getElementById('mActive').value === 'true'
+  };
+
+  try {
+    await window.ProductStore.saveProduct(item);
+    closeProductModal();
+    renderDashboardList();
+    showToast(isAr ? 'تم حفظ الصنف بنجاح وتحديث الموقع' : 'Product saved & website updated');
+  } catch (err) {
+    alert((isAr ? 'تعذّر الحفظ: ' : 'Save failed: ') + err.message);
+  }
+}
+
+async function deleteStoneItem(id) {
+  if (confirm(isAr ? 'هل أنت متأكد من حذف هذا الصنف؟' : 'Are you sure you want to delete this product?')) {
+    try {
+      await window.ProductStore.deleteProduct(id);
+      renderDashboardList();
+      showToast(isAr ? 'تم حذف الصنف' : 'Product deleted');
+    } catch (err) {
+      alert((isAr ? 'تعذّر الحذف: ' : 'Delete failed: ') + err.message);
+    }
+  }
+}
+
+async function toggleVisibilityItem(id) {
+  var p = window.ProductStore.getProductById(id);
+  if (p) {
+    var next = !(p.active !== false);
+    try {
+      await window.ProductStore.saveProduct(Object.assign({}, p, { active: next }));
+      renderDashboardList();
+      showToast(next ? (isAr ? 'تم إظهار الصنف على الموقع' : 'Visible on site') : (isAr ? 'تم إخفاء الصنف' : 'Hidden'));
+    } catch (err) {
+      alert((isAr ? 'تعذّر التحديث: ' : 'Update failed: ') + err.message);
+    }
+  }
+}
+
+function openCloudModal() {
+  var cloudOn = window.ProductStore.isCloudEnabled();
+  document.getElementById('cloudStatusText').textContent = cloudOn
+    ? (isAr ? '✅ متصل بقاعدة بيانات Supabase — كل الزوار يشاهدون نفس البيانات.' : '✅ Connected to Supabase — every visitor sees the same data.')
+    : (isAr ? '⚠️ غير متصل — البيانات محفوظة محلياً على هذا الجهاز فقط.' : '⚠️ Not connected — data is saved locally on this device only.');
+  document.getElementById('cloudModal').classList.add('open');
+}
+
+function closeCloudModal() {
+  document.getElementById('cloudModal').classList.remove('open');
+}
+
+function exportDataFile() {
+  var json = window.ProductStore.exportJSON();
+  var blob = new Blob([json], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'gsr-products-backup-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click();
+}
+
+function importDataFile(e) {
+  var file = e.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(evt) {
+    var res = window.ProductStore.importJSON(evt.target.result);
+    if (res.success) {
+      showToast(isAr ? 'تم استيراد المنتجات بنجاح' : 'Imported successfully');
+      renderDashboardList();
+      closeCloudModal();
+    } else {
+      alert(res.error);
+    }
+  };
+  reader.readAsText(file);
+}
+
+async function resetToFactory() {
+  if (confirm(isAr ? 'هل تريد استرجاع الكتالوج الأصلي؟' : 'Reset to default catalog?')) {
+    try {
+      await window.ProductStore.resetToDefaults();
+      renderDashboardList();
+      showToast(isAr ? 'تمت استعادة الكتالوج الأصلي' : 'Restored original catalog');
+      closeCloudModal();
+    } catch (err) {
+      alert(err.message);
+    }
+  }
+}
+
+// Initial setup
+applyAdminLanguage();
+checkAuth();
+window.addEventListener('gsr_products_updated', function () {
+  if (document.getElementById('dashboardView').style.display !== 'none') {
+    renderDashboardList();
+  }
+});
+</script>
+</body>
+</html>

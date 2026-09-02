@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Global Shining Rocks | رخام عُمان الفاخر — استخراج وتصدير مباشر من عبري</title>
+<meta name="description" content="جلوبال شاينينج روكس — استخراج وتصدير رخام عُماني فاخر من محاجرنا الخاصة في عبري بمحافظة الظاهرة. كتل خام، ألواح مصقولة، ومقاسات مخصصة للمشاريع الكبرى وتصدير لكافة دول الخليج والعالم.">
+<link rel="canonical" href="https://www.globalshiningrocks.com/">
+<meta name="theme-color" content="#18201B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --slate-dark: #161D18;
+  --slate-panel: #1F2722;
+  --slate-card: #28322C;
+  --sand-gold: #C5A880;
+  --sand-light: #E8DECE;
+  --oxide: #8C4A22;
+  --oxide-light: #A75A2C;
+  --ground: #F9F7F3;
+  --ground-card: #FFFFFF;
+  --text-dark: #1B211D;
+  --text-soft: #4F5651;
+  --border-light: rgba(27, 33, 29, 0.1);
+  --border-dark: rgba(255, 255, 255, 0.12);
+  
+  --font-serif: "Cinzel", "Outfit", serif;
+  --font-sans: "Outfit", sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--ground);
+  color: var(--text-dark);
+  font-family: var(--font-arabic);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+body[dir="ltr"] {
+  font-family: var(--font-sans);
+}
+
+.wrap {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- Signature Header ---------- */
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--slate-dark);
+  border-bottom: 1px solid var(--border-dark);
+}
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 78px;
+}
+.brand {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+}
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+.brand-sub {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--sand-gold);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+nav {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+}
+nav a {
+  color: #E2DDD5;
+  text-decoration: none;
+  font-size: 13.5px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s ease;
+}
+nav a:hover {
+  color: var(--sand-gold);
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.pill-btn {
+  padding: 8px 18px;
+  border-radius: 50px;
+  font-size: 12.5px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.25s ease;
+  font-family: var(--font-mono);
+}
+.pill-lang {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #FFFFFF;
+}
+.pill-lang:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: var(--sand-gold);
+}
+.pill-wa {
+  background: var(--sand-gold);
+  border: 1px solid var(--sand-gold);
+  color: var(--slate-dark);
+  font-weight: 700;
+}
+.pill-wa:hover {
+  background: #D8C7AB;
+  transform: translateY(-1px);
+}
+
+.menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  color: #FFFFFF;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* Mobile Nav Drawer */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 78px;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  background: var(--slate-dark);
+  border-bottom: 2px solid var(--sand-gold);
+  padding: 24px;
+  z-index: 99;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.mobile-nav.open { display: flex; }
+.mobile-nav a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+@media(max-width:920px){
+  nav { display: none; }
+  .menu-toggle { display: block; }
+}
+
+/* ---------- Hero Banner (Matching the Mockup) ---------- */
+.hero-section {
+  padding: 40px 0 60px;
+}
+.hero-card {
+  position: relative;
+  background: var(--slate-dark);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(22, 29, 24, 0.25);
+  min-height: 520px;
+  display: flex;
+  align-items: flex-end;
+}
+.hero-bg-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.65;
+  filter: saturate(1.1) brightness(0.95);
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(22, 29, 24, 0.4) 0%, rgba(22, 29, 24, 0.85) 100%);
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 56px 48px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.hero-text {
+  max-width: 650px;
+}
+.hero-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  color: var(--sand-gold);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  background: rgba(0,0,0,0.3);
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(197, 168, 128, 0.3);
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 5.5vw, 68px);
+  font-weight: 700;
+  line-height: 1.05;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+body[dir="rtl"] .hero-title {
+  font-family: var(--font-arabic);
+  font-weight: 700;
+}
+.hero-desc {
+  font-size: 17px;
+  color: #E2DDD5;
+  line-height: 1.6;
+  max-width: 520px;
+  margin-bottom: 28px;
+}
+
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.btn-round-arrow {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  border: 1.5px solid var(--sand-gold);
+  display: grid;
+  place-items: center;
+  color: var(--sand-gold);
+  text-decoration: none;
+  font-size: 22px;
+  transition: all 0.3s ease;
+}
+.btn-round-arrow:hover {
+  background: var(--sand-gold);
+  color: var(--slate-dark);
+  transform: translateX(-4px);
+}
+body[dir="ltr"] .btn-round-arrow:hover {
+  transform: translateX(4px);
+}
+
+/* Floating Stats Badge (Matching Mockup) */
+.hero-stats-badge {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  padding: 24px 32px;
+  display: flex;
+  gap: 36px;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.3);
+}
+.stat-item {
+  display: flex;
+  flex-direction: column;
+}
+.stat-val {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--slate-dark);
+  line-height: 1;
+}
+body[dir="rtl"] .stat-val { font-family: var(--font-sans); }
+.stat-lbl {
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--text-soft);
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* ---------- Showcase & Specs Grid (Matching Mockup) ---------- */
+.showcase-section {
+  padding: 60px 0;
+}
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.materials-panel {
+  background: var(--ground-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: 28px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+}
+.panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 14px;
+}
+.panel-head h2 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--slate-dark);
+  text-transform: uppercase;
+}
+body[dir="rtl"] .panel-head h2 { font-family: var(--font-arabic); }
+.panel-head span {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--sand-gold);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* Stone Sample Swatches */
+.sample-tiles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+.sample-tile {
+  background: var(--ground);
+  border: 2px solid transparent;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  text-align: center;
+}
+.sample-tile:hover, .sample-tile.active {
+  border-color: var(--sand-gold);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(197, 168, 128, 0.25);
+}
+.sample-tile img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  display: block;
+}
+.sample-tile-name {
+  padding: 10px 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--slate-dark);
+}
+
+/* Specs Table (Golden Slate Design matching mockup) */
+.specs-card {
+  background: var(--ground-card);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+}
+.specs-card-header {
+  background: var(--sand-gold);
+  color: var(--slate-dark);
+  padding: 18px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.specs-card-header h3 {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+.specs-card-body {
+  padding: 24px;
+}
+.specs-table-main {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+.specs-table-main tr {
+  border-bottom: 1px solid var(--border-light);
+}
+.specs-table-main tr:last-child {
+  border-bottom: none;
+}
+.specs-table-main td {
+  padding: 14px 0;
+  color: var(--text-soft);
+}
+.specs-table-main td:last-child {
+  text-align: end;
+  font-weight: 700;
+  color: var(--slate-dark);
+  font-size: 14px;
+}
+body[dir="rtl"] .specs-table-main td:last-child { text-align: start; }
+
+.btn-quote-selected {
+  width: 100%;
+  margin-top: 20px;
+  padding: 14px;
+  background: var(--slate-dark);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+.btn-quote-selected:hover {
+  background: var(--oxide);
+}
+
+/* ---------- Full Products Catalog (Dynamic) ---------- */
+.catalog-section {
+  padding: 60px 0 80px;
+  background: #F4EFE6;
+  border-top: 1px solid var(--border-light);
+}
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 28px;
+  margin-top: 36px;
+}
+.catalog-item {
+  background: #FFFFFF;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+}
+.catalog-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(22, 29, 24, 0.08);
+  border-color: var(--sand-gold);
+}
+.catalog-item-media {
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+}
+.catalog-item-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+.catalog-item:hover .catalog-item-media img {
+  transform: scale(1.04);
+}
+.catalog-item-body {
+  padding: 24px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.catalog-item-title {
+  font-family: var(--font-serif);
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--slate-dark);
+  margin-bottom: 8px;
+}
+body[dir="rtl"] .catalog-item-title { font-family: var(--font-arabic); font-weight: 600; }
+.catalog-item-desc {
+  font-size: 14.5px;
+  color: var(--text-soft);
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+/* ---------- Quarry & Factory Section ---------- */
+.quarry-section {
+  padding: 80px 0;
+  background: var(--slate-dark);
+  color: #FFFFFF;
+}
+.quarry-section .panel-head h2 { color: #FFFFFF; }
+.quarry-section .panel-head { border-color: var(--border-dark); }
+.quarry-media-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+}
+.quarry-media-card {
+  position: relative;
+  height: 380px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border-dark);
+}
+.quarry-media-card img, .quarry-media-card video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.quarry-caption {
+  position: absolute;
+  bottom: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
+  padding: 20px 24px;
+  background: linear-gradient(0deg, rgba(22,29,24,0.95) 0%, rgba(22,29,24,0) 100%);
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  letter-spacing: 0.1em;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+.quarry-caption em {
+  display: block;
+  font-style: normal;
+  color: var(--sand-gold);
+  font-size: 10px;
+  margin-top: 4px;
+}
+
+/* ---------- Export Logistics ---------- */
+.export-section {
+  padding: 80px 0;
+}
+.export-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.ports-list {
+  list-style: none;
+  margin-top: 20px;
+}
+.ports-list li {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border-light);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.ports-list strong {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--slate-dark);
+}
+.ports-list span {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--oxide);
+  font-weight: 500;
+}
+
+/* ---------- Quote & Contact Form ---------- */
+.quote-section {
+  padding: 80px 0;
+  background: var(--ground-card);
+  border-top: 1px solid var(--border-light);
+}
+.quote-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+.form-group {
+  margin-bottom: 18px;
+}
+.form-group label {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: 14px 16px;
+  background: var(--ground);
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  font-family: inherit;
+  font-size: 15px;
+  color: var(--text-dark);
+  outline: none;
+}
+.form-group input:focus, .form-group select:focus {
+  border-color: var(--sand-gold);
+  background: #FFFFFF;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.btn-submit-wa {
+  width: 100%;
+  padding: 16px;
+  background: var(--slate-dark);
+  color: var(--sand-gold);
+  border: 1px solid var(--sand-gold);
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.btn-submit-wa:hover {
+  background: var(--sand-gold);
+  color: var(--slate-dark);
+}
+
+.contact-card {
+  background: var(--slate-dark);
+  color: #FFFFFF;
+  border-radius: 12px;
+  padding: 36px;
+  border: 1px solid var(--border-dark);
+}
+.contact-card h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  margin-bottom: 24px;
+  color: var(--sand-gold);
+}
+.contact-item {
+  margin-bottom: 20px;
+}
+.contact-item dt {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--sand-gold);
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+.contact-item dd {
+  font-size: 16px;
+  color: #E2DDD5;
+}
+.contact-item dd a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* ---------- Footer ---------- */
+footer {
+  background: #111512;
+  color: #8E9690;
+  padding: 48px 0;
+  font-size: 13.5px;
+  border-top: 1px solid var(--border-dark);
+}
+.footer-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.admin-badge-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--sand-gold);
+  border-radius: 50px;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  transition: all 0.2s ease;
+}
+.admin-badge-link:hover {
+  background: var(--sand-gold);
+  color: var(--slate-dark);
+}
+
+@media(max-width:860px){
+  .hero-content { padding: 36px 24px; }
+  .showcase-grid { grid-template-columns: 1fr; }
+  .quarry-media-grid { grid-template-columns: 1fr; }
+  .export-grid { grid-template-columns: 1fr; }
+  .quote-grid { grid-template-columns: 1fr; }
+  .form-row { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap navbar">
+    <a href="#" class="brand">
+      <div class="brand-title">Global Shining Rocks</div>
+      <div class="brand-sub" data-en="Ibri · Sultanate of Oman" data-ar="عبري · سلطنة عُمان">عبري · سلطنة عُمان</div>
+    </a>
+
+    <nav>
+      <a href="#showcase" data-en="Materials" data-ar="الأحجار">الأحجار</a>
+      <a href="#catalog" data-en="Catalog" data-ar="المنتجات">المنتجات</a>
+      <a href="#quarry" data-en="Quarry" data-ar="المحجر">المحجر</a>
+      <a href="#export" data-en="Export" data-ar="التصدير">التصدير</a>
+      <a href="#quote" data-en="Contact" data-ar="اطلب تسعيرة">اطلب تسعيرة</a>
+    </nav>
+
+    <div class="header-tools">
+      <button class="pill-btn pill-lang" id="btnLangToggle">English</button>
+      <a class="pill-btn pill-wa" href="https://wa.me/96890000000" target="_blank" rel="noopener" data-en="WhatsApp" data-ar="واتساب">واتساب</a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#showcase" data-en="Materials" data-ar="الأحجار">الأحجار</a>
+    <a href="#catalog" data-en="Catalog" data-ar="المنتجات">المنتجات</a>
+    <a href="#quarry" data-en="Quarry" data-ar="المحجر">المحجر</a>
+    <a href="#export" data-en="Export" data-ar="التصدير">التصدير</a>
+    <a href="#quote" data-en="Contact" data-ar="اطلب تسعيرة">اطلب تسعيرة</a>
+    <a href="admin.html" style="color:var(--sand-gold)">🔒 <span data-en="Admin Dashboard" data-ar="لوحة التحكم">لوحة التحكم</span></a>
+  </div>
+</header>
+
+<!-- Hero Section Matching Luxury Mockup -->
+<section class="hero-section">
+  <div class="wrap">
+    <div class="hero-card">
+      <img class="hero-bg-img" src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=1600&q=80" alt="Ibri Marble Quarry Blocks">
+      <div class="hero-overlay"></div>
+      
+      <div class="hero-content">
+        <div class="hero-text">
+          <span class="hero-tag" data-en="Direct Mining &amp; Export Since 2018" data-ar="استخراج وتصدير مباشر منذ ٢٠١٨">استخراج وتصدير مباشر منذ ٢٠١٨</span>
+          <h1 class="hero-title" data-en="Oman Marble,<br>Cut At The <u>Source</u>" data-ar="رخام عُمان،<br>من قلب <u>المصدر</u>">رخام عُمان،<br>من قلب <u>المصدر</u></h1>
+          <p class="hero-desc" data-en="We extract, process, and supply premium Oman marble blocks, polished slabs, and cut-to-size architectural panels directly from our concession in Ibri, Al Dhahirah to contractors across the GCC and international ports." data-ar="نستخرج ونورّد كتل الرخام العُماني الفاخر، الألواح المصقولة، والمقاسات المعمارية الدقيقة مباشرة من محاجرنا في عبري بمحافظة الظاهرة إلى المشاريع الكبرى في سلطنة عُمان وكافة دول الخليج والعالم.">نستخرج ونورّد كتل الرخام العُماني الفاخر، الألواح المصقولة، والمقاسات المعمارية الدقيقة مباشرة من محاجرنا في عبري بمحافظة الظاهرة إلى المشاريع الكبرى في سلطنة عُمان وكافة دول الخليج والعالم.</p>
+          
+          <div class="hero-actions">
+            <a class="btn-round-arrow" href="#showcase" title="Explore Materials">↓</a>
+            <a class="pill-btn pill-wa" href="#quote" data-en="Request Direct Quote" data-ar="اطلب تسعيرة مباشرة">اطلب تسعيرة مباشرة</a>
+          </div>
+        </div>
+
+        <!-- Floating Stats Badge (Matching Mockup) -->
+        <div class="hero-stats-badge">
+          <div class="stat-item">
+            <div class="stat-val">1,200+</div>
+            <div class="stat-lbl" data-en="Blocks / Month" data-ar="كتلة / شهرياً">كتلة / شهرياً</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-val">4.5M <span style="font-size:18px">m³</span></div>
+            <div class="stat-lbl" data-en="Reserve Estimate" data-ar="الاحتياطي المقدّر">الاحتياطي المقدّر</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Showcase & Dynamic Specs Table (Matching Mockup) -->
+<section id="showcase" class="showcase-section">
+  <div class="wrap">
+    <div class="showcase-grid">
+      <!-- Materials Swatches Panel -->
+      <div class="materials-panel">
+        <div class="panel-head">
+          <h2 data-en="Our Stone Materials" data-ar="عينات الرخام والأحجار">عينات الرخام والأحجار</h2>
+          <span data-en="Click to view specifications" data-ar="اضغط لمعاينة المواصفات">اضغط لمعاينة المواصفات</span>
+        </div>
+
+        <div class="sample-tiles-grid" id="sampleTilesContainer">
+          <!-- Injected dynamically from ProductStore -->
+        </div>
+
+        <p style="font-size:13.5px;color:var(--text-soft)" data-en="All stones are mined from geological strata in Ibri, tested in accordance with international ASTM and European standards." data-ar="تُستخرج جميع الأحجار من طبقات جيولوجية متينة في عبري وتخضع للفحوصات المخبرية المعتمدة وفق المعايير الدولية.">تُستخرج جميع الأحجار من طبقات جيولوجية متينة في عبري وتخضع للفحوصات المخبرية المعتمدة وفق المعايير الدولية.</p>
+      </div>
+
+      <!-- Live Specifications Table Card (Matching Mockup) -->
+      <div class="specs-card" id="activeSpecsCard">
+        <div class="specs-card-header">
+          <h3 id="selectedStoneTitle">SPECIFICATION &middot; METRIC</h3>
+          <span id="selectedStoneCode" style="font-size:11px;opacity:0.8">GSR-IBRI</span>
+        </div>
+        <div class="specs-card-body">
+          <table class="specs-table-main">
+            <tr>
+              <td data-en="Density (kg/m³)" data-ar="الكثافة (كجم/م³)">الكثافة (كجم/م³)</td>
+              <td id="specDensity">2680 kg/m³</td>
+            </tr>
+            <tr>
+              <td data-en="Compressive Strength (MPa)" data-ar="مقاومة الضغط (ميجاباسكال)">مقاومة الضغط (ميجاباسكال)</td>
+              <td id="specCompressive">128 MPa</td>
+            </tr>
+            <tr>
+              <td data-en="Flexural Strength (MPa)" data-ar="مقاومة الانحناء (ميجاباسكال)">مقاومة الانحناء (ميجاباسكال)</td>
+              <td id="specFlexural">14.2 MPa</td>
+            </tr>
+            <tr>
+              <td data-en="Water Absorption (%)" data-ar="امتصاص الماء (%)">امتصاص الماء (%)</td>
+              <td id="specWater">&lt; 0.16 %</td>
+            </tr>
+            <tr>
+              <td data-en="Available Finishes" data-ar="التشطيبات المتوفرة">التشطيبات المتوفرة</td>
+              <td id="specFinishes">مصقول / مطفي / معتق</td>
+            </tr>
+            <tr>
+              <td data-en="Standard Thickness" data-ar="السماكات القياسية">السماكات القياسية</td>
+              <td id="specThickness">٢٠ ملم، ٣٠ ملم، حسب الطلب</td>
+            </tr>
+          </table>
+
+          <a href="#quote" class="btn-quote-selected" id="btnQuoteSelected" data-en="Request Quote For This Stone →" data-ar="طلب تسعيرة لهذا الحجر ←">طلب تسعيرة لهذا الحجر ←</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Full Dynamic Products Catalog -->
+<section id="catalog" class="catalog-section">
+  <div class="wrap">
+    <div class="panel-head">
+      <h2 data-en="Live Products Catalog" data-ar="كتالوج المنتجات الجاهزة">كتالوج المنتجات الجاهزة</h2>
+      <span data-en="Direct from Ibri Yard" data-ar="مباشرة من ساحة المصنع">مباشرة من ساحة المصنع</span>
+    </div>
+    <div class="catalog-grid" id="catalogContainer">
+      <!-- Injected from store -->
+    </div>
+  </div>
+</section>
+
+<!-- Quarry & Production Section -->
+<section id="quarry" class="quarry-section">
+  <div class="wrap">
+    <div class="panel-head">
+      <h2 data-en="Our Quarry &amp; Facility" data-ar="المحجر والمصنع في عبري">المحجر والمصنع في عبري</h2>
+      <span data-en="Concession OM-2018 · Ibri, Oman" data-ar="امتياز التعدين OM-2018 · عبري، عُمان">امتياز التعدين OM-2018 · عبري، عُمان</span>
+    </div>
+
+    <div class="quarry-media-grid">
+      <div class="quarry-media-card">
+        <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1200&q=80" alt="Quarry Extraction Ibri">
+        <div class="quarry-caption">
+          <strong data-en="DIAMOND WIRE SAW EXTRACTION" data-ar="قص الواجهات بمناشير السلك الماسي">قص الواجهات بمناشير السلك الماسي</strong>
+          <em data-en="Our own mining concession in Ibri, Al Dhahirah." data-ar="محجرنا الخاص في عبري، محافظة الظاهرة.">محجرنا الخاص في عبري، محافظة الظاهرة.</em>
+        </div>
+      </div>
+      <div class="quarry-media-card">
+        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="Processing Plant">
+        <div class="quarry-caption">
+          <strong data-en="PROCESSING PLANT &amp; GANG SAWS" data-ar="مصنع النشر والصقل والتعبئة">مصنع النشر والصقل والتعبئة</strong>
+          <em data-en="Automated polishing lines, 7-tonne overhead crane." data-ar="خطوط صقل آلية ورافعات علوية ٧ طن.">خطوط صقل آلية ورافعات علوية ٧ طن.</em>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Export & Ports Logistics -->
+<section id="export" class="export-section">
+  <div class="wrap">
+    <div class="panel-head">
+      <h2 data-en="Global Export &amp; GCC Freight" data-ar="التصدير البحري والشحن البري">التصدير البحري والشحن البري</h2>
+      <span data-en="Sea Containers &amp; Overland Trucking" data-ar="حاويات بحرية وشاحنات برية">حاويات بحرية وشاحنات برية</span>
+    </div>
+
+    <div class="export-grid">
+      <div>
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--sand-gold);text-transform:uppercase" data-en="Sea Freight via Omani Ports" data-ar="الشحن البحري عبر الموانئ العُمانية">الشحن البحري عبر الموانئ العُمانية</p>
+        <ul class="ports-list">
+          <li><strong>Sohar Port (ميناء صحار)</strong><span>210 km</span></li>
+          <li><strong>Duqm Port (ميناء الدقم)</strong><span>450 km</span></li>
+          <li><strong>Salalah Port (ميناء صلالة)</strong><span>870 km</span></li>
+        </ul>
+
+        <p style="font-family:var(--font-mono);font-size:12px;color:var(--sand-gold);text-transform:uppercase;margin-top:30px" data-en="GCC Overland Road Delivery" data-ar="الشحن البري المباشر لدول الخليج">الشحن البري المباشر لدول الخليج</p>
+        <ul class="ports-list">
+          <li><strong data-en="UAE (الإمارات)" data-ar="الإمارات">الإمارات</strong><span data-en="via Hafeet / Al Buraimi" data-ar="عبر منفذ البريمي / حفيت">عبر منفذ البريمي / حفيت</span></li>
+          <li><strong data-en="Saudi Arabia (السعودية)" data-ar="السعودية">السعودية</strong><span data-en="via Rub al Khali Highway" data-ar="عبر منفذ الربع الخالي المباشر">عبر منفذ الربع الخالي المباشر</span></li>
+          <li><strong data-en="Qatar · Kuwait · Bahrain" data-ar="قطر · الكويت · البحرين">قطر · الكويت · البحرين</strong><span data-en="Transit road freight" data-ar="نقل بري مباشر">نقل بري مباشر</span></li>
+        </ul>
+      </div>
+
+      <div style="background:var(--ground-card);border:1px solid var(--border-light);border-radius:12px;padding:32px;">
+        <h3 style="font-size:18px;font-weight:700;margin-bottom:14px;color:var(--slate-dark)" data-en="Packaging &amp; Quality Inspection" data-ar="معايير التغليف والفحص">معايير التغليف والفحص</h3>
+        <p style="font-size:14.5px;color:var(--text-soft);line-height:1.7" data-en="All slabs and tiles are banded in fumigated heavy timber crates with edge corner guards and shrink wrapping to guarantee zero breakage during sea or overland transit." data-ar="يتم ربط وتثبيت كافة الألواح والبلاط في صناديق خشبية معقمة بأشرطة فولاذية مع واقيات زوايا وتغليف حراري لضمان سلامة الشحنة بنسبة ١٠٠٪.">يتم ربط وتثبيت كافة الألواح والبلاط في صناديق خشبية معقمة بأشرطة فولاذية مع واقيات زوايا وتغليف حراري لضمان سلامة الشحنة بنسبة ١٠٠٪.</p>
+        <div style="margin-top:20px;display:flex;gap:12px;font-family:var(--font-mono);font-size:12px;color:var(--oxide);font-weight:600">
+          <span>✓ FOB</span> &bull; <span>✓ CIF</span> &bull; <span>✓ DAP GCC Road</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote & Direct WhatsApp Form -->
+<section id="quote" class="quote-section">
+  <div class="wrap">
+    <div class="quote-grid">
+      <div>
+        <div class="panel-head" style="margin-bottom:28px">
+          <h2 data-en="Request Direct Quotation" data-ar="طلب تسعيرة وفحص عينات">طلب تسعيرة وفحص عينات</h2>
+          <span data-en="Reply within 1 business day" data-ar="الرد خلال يوم عمل واحد">الرد خلال يوم عمل واحد</span>
+        </div>
+
+        <form id="quoteForm" onsubmit="handleQuoteSubmit(event)">
+          <div class="form-group">
+            <label data-en="Select Stone Type" data-ar="نوع الحجر المطلوب">نوع الحجر المطلوب</label>
+            <select id="qStone">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label data-en="Product Form" data-ar="شكل المنتج">شكل المنتج</label>
+              <select id="qForm">
+                <option value="كتل خام (Raw Blocks)" data-en="Raw Blocks" data-ar="كتل خام (Raw Blocks)">كتل خام (Raw Blocks)</option>
+                <option value="ألواح مصقولة (Polished Slabs)" data-en="Polished Slabs" data-ar="ألواح مصقولة (Polished Slabs)">ألواح مصقولة (Polished Slabs)</option>
+                <option value="مقاسات جاهزة (Cut-to-size)" data-en="Cut-to-size Panels" data-ar="مقاسات جاهزة (Cut-to-size)">مقاسات جاهزة (Cut-to-size)</option>
+                <option value="درجات سلالم (Stairs)" data-en="Stairs & Risers" data-ar="درجات سلالم (Stairs)">درجات سلالم (Stairs)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label data-en="Required Quantity" data-ar="الكمية التقديرية">الكمية التقديرية</label>
+              <input type="text" id="qQty" placeholder="مثال: ٥٠٠ م² أو ٢٥ م³">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label data-en="Delivery Destination" data-ar="ميناء أو مدينة التسليم">ميناء أو مدينة التسليم</label>
+            <input type="text" id="qDest" placeholder="مثال: ميناء صحار، الرياض، دبي، الدوحة">
+          </div>
+
+          <div class="form-group">
+            <label data-en="Your Contact (Phone or WhatsApp) *" data-ar="بيانات التواصل (الهاتف أو الواتساب) *">بيانات التواصل (الهاتف أو الواتساب) *</label>
+            <input type="text" id="qContact" required placeholder="رقم الهاتف أو الواتساب">
+          </div>
+
+          <button type="submit" class="btn-submit-wa" data-en="Send Quote Request via WhatsApp →" data-ar="إرسال طلب التسعيرة عبر واتساب ←">إرسال طلب التسعيرة عبر واتساب ←</button>
+        </form>
+      </div>
+
+      <!-- Contact Info Card -->
+      <div class="contact-card">
+        <h3 data-en="Contact Direct Sales" data-ar="التواصل مع إدارة المبيعات">التواصل مع إدارة المبيعات</h3>
+        <dl>
+          <div class="contact-item">
+            <dt data-en="Head Office & Quarry" data-ar="المقر والمحجر">المقر والمحجر</dt>
+            <dd data-en="Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman" data-ar="المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان">المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان</dd>
+          </div>
+          <div class="contact-item">
+            <dt data-en="WhatsApp / Phone" data-ar="الهاتف / واتساب">الهاتف / واتساب</dt>
+            <dd><a href="https://wa.me/96890000000">+968 9000 0000</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt data-en="Sales Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</dt>
+            <dd><a href="mailto:sales@globalshiningrocks.com">sales@globalshiningrocks.com</a></dd>
+          </div>
+          <div class="contact-item">
+            <dt data-en="Commercial Registration (CR)" data-ar="السجل التجاري">السجل التجاري</dt>
+            <dd style="font-family:var(--font-mono)">CR: 1348920 (Sultanate of Oman)</dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Luxury Footer -->
+<footer>
+  <div class="wrap footer-wrap">
+    <div>
+      <strong style="color:#fff;font-family:var(--font-serif)">GLOBAL SHINING ROCKS LLC</strong> &middot; 
+      <span data-en="Ibri, Sultanate of Oman" data-ar="عبري، سلطنة عُمان">عبري، سلطنة عُمان</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:18px;">
+      <span data-en="Mining Concession OM-2018" data-ar="امتياز التعدين OM-2018">امتياز التعدين OM-2018</span>
+      <a href="admin.html" class="admin-badge-link" title="Client Management Dashboard">
+        <span>🔒</span> <span data-en="Admin Dashboard" data-ar="لوحة التحكم">لوحة التحكم</span>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Shared Store -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/store.js"></script>
+
+<script>
+var isAr = localStorage.getItem('gsr_lang') !== 'en'; // default Arabic
+var btnLang = document.getElementById('btnLangToggle');
+var menuToggle = document.getElementById('menuToggle');
+var mobileNav = document.getElementById('mobileNav');
+var selectedStoneId = null;
+
+// Mobile Navigation
+if (menuToggle && mobileNav) {
+  menuToggle.addEventListener('click', function(){
+    mobileNav.classList.toggle('open');
+  });
+  mobileNav.querySelectorAll('a').forEach(function(l){
+    l.addEventListener('click', function(){ mobileNav.classList.remove('open'); });
+  });
+}
+
+function updatePlaceholders() {
+  var qQty = document.getElementById('qQty');
+  var qDest = document.getElementById('qDest');
+  var qContact = document.getElementById('qContact');
+  if (qQty) qQty.placeholder = isAr ? 'مثال: ٥٠٠ م² أو ٢٥ م³' : 'e.g. 500 m² or 25 m³';
+  if (qDest) qDest.placeholder = isAr ? 'مثال: ميناء صحار، الرياض، دبي، الدوحة' : 'e.g. Sohar Port, Riyadh, Dubai, Doha';
+  if (qContact) qContact.placeholder = isAr ? 'رقم الهاتف أو الواتساب' : 'Phone or WhatsApp number';
+}
+
+function renderMaterialsAndCatalog() {
+  if (!window.ProductStore) return;
+  var products = window.ProductStore.getProducts(true);
+
+  var tilesContainer = document.getElementById('sampleTilesContainer');
+  var catalogContainer = document.getElementById('catalogContainer');
+  var qStoneSelect = document.getElementById('qStone');
+
+  if (qStoneSelect) {
+    qStoneSelect.innerHTML = '';
+  }
+
+  if (tilesContainer) {
+    tilesContainer.innerHTML = '';
+  }
+
+  if (catalogContainer) {
+    catalogContainer.innerHTML = '';
+  }
+
+  if (products.length === 0) {
+    if (tilesContainer) tilesContainer.innerHTML = '<div style="grid-column:1/-1;text-align:center;color:var(--text-soft)">' + (isAr ? 'لا توجد أصناف معروضة' : 'No materials displayed') + '</div>';
+    return;
+  }
+
+  // Populate Swatches and Specs
+  products.forEach(function(p, idx){
+    var title = isAr ? (p.name_ar || p.name_en) : (p.name_en || p.name_ar);
+    var desc = isAr ? (p.desc_ar || p.desc_en) : (p.desc_en || p.desc_ar);
+    var img = p.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+
+    // Option in Quote Select
+    if (qStoneSelect) {
+      var opt = document.createElement('option');
+      opt.value = title;
+      opt.textContent = title;
+      qStoneSelect.appendChild(opt);
+    }
+
+    // Material Swatch Tile
+    if (tilesContainer) {
+      var tile = document.createElement('div');
+      tile.className = 'sample-tile' + (idx === 0 ? ' active' : '');
+      tile.onclick = function() { selectStone(p.id); };
+      tile.innerHTML = '<img src="' + img + '" alt="' + title + '">' +
+        '<div class="sample-tile-name">' + title + '</div>';
+      tilesContainer.appendChild(tile);
+    }
+
+    // Catalog Item Card
+    if (catalogContainer) {
+      var card = document.createElement('div');
+      card.className = 'catalog-item';
+      card.innerHTML = 
+        '<div class="catalog-item-media">' +
+          '<img src="' + img + '" alt="' + title + '" loading="lazy">' +
+        '</div>' +
+        '<div class="catalog-item-body">' +
+          '<h3 class="catalog-item-title">' + title + '</h3>' +
+          '<p class="catalog-item-desc">' + desc + '</p>' +
+          '<div style="font-family:var(--font-mono);font-size:12px;color:var(--text-soft);margin-bottom:16px;">' +
+            '<div>' + (isAr ? 'الكثافة:' : 'Density:') + ' <strong style="color:var(--slate-dark)">' + (p.density || '2680') + ' kg/m³</strong></div>' +
+            '<div>' + (isAr ? 'مقاومة الضغط:' : 'Comp. Strength:') + ' <strong style="color:var(--slate-dark)">' + (p.compressive_strength || '128') + ' MPa</strong></div>' +
+          '</div>' +
+          '<a href="#quote" class="btn-quote-selected" style="margin-top:auto" onclick="prefillQuote(\'' + title.replace(/'/g, "\\'") + '\')">' +
+            (isAr ? 'طلب تسعيرة ←' : 'Request Quote →') +
+          '</a>' +
+        '</div>';
+      catalogContainer.appendChild(card);
+    }
+  });
+
+  // Select First Stone Initially
+  if (products.length > 0) {
+    selectStone(products[0].id);
+  }
+}
+
+function selectStone(prodId) {
+  var p = window.ProductStore.getProductById(prodId);
+  if (!p) return;
+  selectedStoneId = prodId;
+
+  var title = isAr ? (p.name_ar || p.name_en) : (p.name_en || p.name_ar);
+  var finishes = isAr ? (p.finishes_ar || p.finishes_en || 'مصقول / مطفي') : (p.finishes_en || p.finishes_ar || 'Polished / Honed');
+  var thickness = isAr ? (p.thickness_ar || p.thickness_en || '٢٠ ملم، ٣٠ ملم') : (p.thickness_en || p.thickness_ar || '20mm, 30mm');
+
+  document.getElementById('selectedStoneTitle').textContent = title.toUpperCase();
+  document.getElementById('specDensity').textContent = (p.density || '2680') + ' kg/m³';
+  document.getElementById('specCompressive').textContent = (p.compressive_strength || '128') + ' MPa';
+  document.getElementById('specFlexural').textContent = (p.flexural_strength || '14.2') + ' MPa';
+  document.getElementById('specWater').textContent = '< ' + (p.water_absorption || '0.16') + ' %';
+  document.getElementById('specFinishes').textContent = finishes;
+  document.getElementById('specThickness').textContent = thickness;
+
+  var btnQ = document.getElementById('btnQuoteSelected');
+  if (btnQ) {
+    btnQ.onclick = function() { prefillQuote(title); };
+  }
+
+  // Update active swatch tile
+  var tiles = document.querySelectorAll('.sample-tile');
+  var products = window.ProductStore.getProducts(true);
+  products.forEach(function(item, idx){
+    if (tiles[idx]) {
+      if (item.id === prodId) {
+        tiles[idx].classList.add('active');
+      } else {
+        tiles[idx].classList.remove('active');
+      }
+    }
+  });
+}
+
+function prefillQuote(stoneName) {
+  var select = document.getElementById('qStone');
+  if (select) {
+    for (var i = 0; i < select.options.length; i++) {
+      if (select.options[i].text === stoneName || select.options[i].value === stoneName) {
+        select.selectedIndex = i;
+        break;
+      }
+    }
+  }
+}
+
+function applyLanguage(arMode) {
+  isAr = arMode;
+  localStorage.setItem('gsr_lang', isAr ? 'ar' : 'en');
+  document.documentElement.dir = isAr ? 'rtl' : 'ltr';
+  document.documentElement.lang = isAr ? 'ar' : 'en';
+  document.body.setAttribute('dir', isAr ? 'rtl' : 'ltr');
+
+  if (btnLang) {
+    btnLang.textContent = isAr ? 'English' : 'العربية';
+  }
+
+  document.querySelectorAll('[data-en]').forEach(function(el){
+    el.innerHTML = isAr ? el.getAttribute('data-ar') : el.getAttribute('data-en');
+  });
+
+  updatePlaceholders();
+  renderMaterialsAndCatalog();
+}
+
+if (btnLang) {
+  btnLang.addEventListener('click', function(){
+    applyLanguage(!isAr);
+  });
+}
+
+// Quote WhatsApp Submission
+function handleQuoteSubmit(e) {
+  e.preventDefault();
+  var stone = document.getElementById('qStone').value;
+  var form = document.getElementById('qForm').value;
+  var qty = document.getElementById('qQty').value.trim() || '—';
+  var dest = document.getElementById('qDest').value.trim() || '—';
+  var contact = document.getElementById('qContact').value.trim();
+
+  if (!contact) {
+    alert(isAr ? 'يرجى كتابة وسيلة التواصل' : 'Please enter your contact details');
+    return;
+  }
+
+  var msg = (isAr ? 'طلب تسعيرة مباشرة — Global Shining Rocks' : 'Direct Quote Request — Global Shining Rocks')
+    + '\n' + (isAr ? 'الصنف / الحجر' : 'Stone') + ': ' + stone
+    + '\n' + (isAr ? 'الشكل المطلوب' : 'Form') + ': ' + form
+    + '\n' + (isAr ? 'الكمية' : 'Quantity') + ': ' + qty
+    + '\n' + (isAr ? 'ميناء أو مدينة التسليم' : 'Destination') + ': ' + dest
+    + '\n' + (isAr ? 'بيانات التواصل' : 'Contact') + ': ' + contact;
+
+  window.open('https://wa.me/96890000000?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// Listen for updates from Admin Dashboard
+window.addEventListener('storage', function(e){
+  if (e.key === 'gsr_products_data_v3') {
+    renderMaterialsAndCatalog();
+  }
+});
+window.addEventListener('gsr_products_updated', function(){
+  renderMaterialsAndCatalog();
+});
+
+// Initialize on Load
+applyLanguage(isAr);
+if (window.ProductStore) window.ProductStore.init();
+</script>
+</body>
+</html>
