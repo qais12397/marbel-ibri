@@ -799,6 +799,15 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
 <script src="js/store.js"></script>
 
 <script>
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 var isAr = localStorage.getItem('admin_lang') !== 'en'; // default Arabic
 
 function showToast(msg) {
@@ -922,23 +931,25 @@ function renderDashboardList() {
     }
     var isActive = p.active !== false;
     var img = p.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+    var titleSafe = escapeHtml(title);
+    var imgSafe = escapeHtml(img);
 
     var card = document.createElement('div');
     card.className = 'product-card';
-    card.innerHTML = 
+    card.innerHTML =
       '<div class="product-card-media">' +
-        '<img src="' + img + '" alt="' + title + '" onerror="this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\'">' +
+        '<img src="' + imgSafe + '" alt="' + titleSafe + '" onerror="this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\'">' +
         '<span class="status-pill ' + (isActive ? 'status-active' : 'status-draft') + '">' +
           (isActive ? (isAr ? 'معروض نشط' : 'ACTIVE') : (isAr ? 'مخفي' : 'HIDDEN')) +
         '</span>' +
       '</div>' +
       '<div class="product-card-body">' +
-        '<h3 class="product-card-title">' + title + '</h3>' +
+        '<h3 class="product-card-title">' + titleSafe + '</h3>' +
         '<ul class="product-specs-list">' +
-          '<li><span>' + (isAr ? 'الكثافة:' : 'Density:') + '</span><strong>' + (p.density || '2680') + ' kg/m³</strong></li>' +
-          '<li><span>' + (isAr ? 'مقاومة الضغط:' : 'Comp. Strength:') + '</span><strong>' + (p.compressive_strength || '128') + ' MPa</strong></li>' +
-          '<li><span>' + (isAr ? 'مقاومة الانحناء:' : 'Flexural Strength:') + '</span><strong>' + (p.flexural_strength || '14.2') + ' MPa</strong></li>' +
-          '<li><span>' + (isAr ? 'امتصاص الماء:' : 'Water Absorption:') + '</span><strong>' + (p.water_absorption || '0.16') + ' %</strong></li>' +
+          '<li><span>' + (isAr ? 'الكثافة:' : 'Density:') + '</span><strong>' + escapeHtml(p.density || '2680') + ' kg/m³</strong></li>' +
+          '<li><span>' + (isAr ? 'مقاومة الضغط:' : 'Comp. Strength:') + '</span><strong>' + escapeHtml(p.compressive_strength || '128') + ' MPa</strong></li>' +
+          '<li><span>' + (isAr ? 'مقاومة الانحناء:' : 'Flexural Strength:') + '</span><strong>' + escapeHtml(p.flexural_strength || '14.2') + ' MPa</strong></li>' +
+          '<li><span>' + (isAr ? 'امتصاص الماء:' : 'Water Absorption:') + '</span><strong>' + escapeHtml(p.water_absorption || '0.16') + ' %</strong></li>' +
         '</ul>' +
         '<div class="product-card-footer">' +
           '<button class="btn-edit-card" onclick="editProductItem(\'' + p.id + '\')">' + (isAr ? 'تعديل' : 'EDIT PRODUCT') + '</button>' +
@@ -989,7 +1000,7 @@ function previewImage() {
   var url = document.getElementById('mImage').value.trim();
   var box = document.getElementById('imgPreview');
   if (url) {
-    box.innerHTML = '<img src="' + url + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">';
+    box.innerHTML = '<img src="' + escapeHtml(url) + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">';
   } else {
     box.innerHTML = '<span style="color:var(--text-muted);font-size:12px;font-family:var(--font-mono)">' + (isAr ? 'معاينة الصورة' : 'Image Preview') + '</span>';
   }

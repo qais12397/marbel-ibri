@@ -1053,6 +1053,15 @@ footer {
 <script src="js/store.js"></script>
 
 <script>
+function escapeHtml(str) {
+  return String(str == null ? '' : str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+}
+
 var isAr = localStorage.getItem('gsr_lang') !== 'en'; // default Arabic
 var btnLang = document.getElementById('btnLangToggle');
 var menuToggle = document.getElementById('menuToggle');
@@ -1108,6 +1117,9 @@ function renderMaterialsAndCatalog() {
     var title = isAr ? (p.name_ar || p.name_en) : (p.name_en || p.name_ar);
     var desc = isAr ? (p.desc_ar || p.desc_en) : (p.desc_en || p.desc_ar);
     var img = p.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+    var titleSafe = escapeHtml(title);
+    var descSafe = escapeHtml(desc);
+    var imgSafe = escapeHtml(img);
 
     // Option in Quote Select
     if (qStoneSelect) {
@@ -1122,8 +1134,8 @@ function renderMaterialsAndCatalog() {
       var tile = document.createElement('div');
       tile.className = 'sample-tile' + (idx === 0 ? ' active' : '');
       tile.onclick = function() { selectStone(p.id); };
-      tile.innerHTML = '<img src="' + img + '" alt="' + title + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">' +
-        '<div class="sample-tile-name">' + title + '</div>';
+      tile.innerHTML = '<img src="' + imgSafe + '" alt="' + titleSafe + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">' +
+        '<div class="sample-tile-name">' + titleSafe + '</div>';
       tilesContainer.appendChild(tile);
     }
 
@@ -1131,21 +1143,25 @@ function renderMaterialsAndCatalog() {
     if (catalogContainer) {
       var card = document.createElement('div');
       card.className = 'catalog-item';
-      card.innerHTML = 
+      card.innerHTML =
         '<div class="catalog-item-media">' +
-          '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">' +
+          '<img src="' + imgSafe + '" alt="' + titleSafe + '" loading="lazy" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">' +
         '</div>' +
         '<div class="catalog-item-body">' +
-          '<h3 class="catalog-item-title">' + title + '</h3>' +
-          '<p class="catalog-item-desc">' + desc + '</p>' +
+          '<h3 class="catalog-item-title">' + titleSafe + '</h3>' +
+          '<p class="catalog-item-desc">' + descSafe + '</p>' +
           '<div style="font-family:var(--font-mono);font-size:12px;color:var(--text-soft);margin-bottom:16px;">' +
-            '<div>' + (isAr ? 'الكثافة:' : 'Density:') + ' <strong style="color:var(--slate-dark)">' + (p.density || '2680') + ' kg/m³</strong></div>' +
-            '<div>' + (isAr ? 'مقاومة الضغط:' : 'Comp. Strength:') + ' <strong style="color:var(--slate-dark)">' + (p.compressive_strength || '128') + ' MPa</strong></div>' +
+            '<div>' + (isAr ? 'الكثافة:' : 'Density:') + ' <strong style="color:var(--slate-dark)">' + escapeHtml(p.density || '2680') + ' kg/m³</strong></div>' +
+            '<div>' + (isAr ? 'مقاومة الضغط:' : 'Comp. Strength:') + ' <strong style="color:var(--slate-dark)">' + escapeHtml(p.compressive_strength || '128') + ' MPa</strong></div>' +
           '</div>' +
-          '<a href="#quote" class="btn-quote-selected" style="margin-top:auto" onclick="prefillQuote(\'' + title.replace(/'/g, "\\'") + '\')">' +
+          '<a href="#quote" class="btn-quote-selected quote-for-stone" style="margin-top:auto">' +
             (isAr ? 'طلب تسعيرة ←' : 'Request Quote →') +
           '</a>' +
         '</div>';
+      var quoteLink = card.querySelector('.quote-for-stone');
+      if (quoteLink) {
+        quoteLink.addEventListener('click', function () { prefillQuote(title); });
+      }
       catalogContainer.appendChild(card);
     }
   });

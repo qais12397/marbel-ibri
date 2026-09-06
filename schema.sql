@@ -1,6 +1,12 @@
 -- ==============================================================================
 -- GLOBAL SHINING ROCKS - SUPABASE DATABASE & STORAGE SCHEMA
 -- Execute this script in your Supabase SQL Editor (https://app.supabase.com)
+--
+-- After running this, also go to Authentication -> Sign In / Providers and
+-- turn OFF "Allow new users to sign up". This project only ever needs the one
+-- admin account (created manually via Authentication -> Users -> Add user) -
+-- public sign-up has no legitimate use here and, combined with a permissive
+-- RLS policy, would let a stranger create an account and edit your products.
 -- ==============================================================================
 
 -- 1. Create Products Table
@@ -39,13 +45,17 @@ ON public.products
 FOR SELECT
 USING (true);
 
--- 4. Authenticated / Admin Write Access
-CREATE POLICY "Allow full access to authenticated admins"
+-- 4. Admin Write Access - restricted to the specific admin account(s) below.
+-- IMPORTANT: "TO authenticated" alone is not enough - any signed-up user counts
+-- as "authenticated". This checks the JWT email so only the real admin(s) can
+-- write, even if public sign-ups are ever re-enabled by mistake. Add more
+-- emails with "OR auth.jwt() ->> 'email' = '...'" if you have multiple admins.
+CREATE POLICY "Allow write access to the site admin only"
 ON public.products
 FOR ALL
 TO authenticated
-USING (true)
-WITH CHECK (true);
+USING (auth.jwt() ->> 'email' = 'alsukit96@gmail.com')
+WITH CHECK (auth.jwt() ->> 'email' = 'alsukit96@gmail.com');
 
 -- 5. Insert Initial Default Catalog Data
 INSERT INTO public.products (id, name_en, name_ar, desc_en, desc_ar, image, density, water_absorption, compressive_strength, finishes_en, finishes_ar, thickness_en, thickness_ar, max_panel_en, max_panel_ar, lead_time_en, lead_time_ar, active, sort_order)
