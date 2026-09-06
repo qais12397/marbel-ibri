@@ -1122,7 +1122,7 @@ function renderMaterialsAndCatalog() {
       var tile = document.createElement('div');
       tile.className = 'sample-tile' + (idx === 0 ? ' active' : '');
       tile.onclick = function() { selectStone(p.id); };
-      tile.innerHTML = '<img src="' + img + '" alt="' + title + '">' +
+      tile.innerHTML = '<img src="' + img + '" alt="' + title + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">' +
         '<div class="sample-tile-name">' + title + '</div>';
       tilesContainer.appendChild(tile);
     }
@@ -1133,7 +1133,7 @@ function renderMaterialsAndCatalog() {
       card.className = 'catalog-item';
       card.innerHTML = 
         '<div class="catalog-item-media">' +
-          '<img src="' + img + '" alt="' + title + '" loading="lazy">' +
+          '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">' +
         '</div>' +
         '<div class="catalog-item-body">' +
           '<h3 class="catalog-item-title">' + title + '</h3>' +
