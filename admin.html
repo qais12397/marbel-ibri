@@ -1055,7 +1055,7 @@ function renderDashboardList() {
       title = (p.name_ar || '') + ' | ' + (p.name_en || '');
     }
     var isActive = p.active !== false;
-    var img = p.image || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80';
+    var img = p.image || 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Thassos_marble.jpg/1920px-Thassos_marble.jpg';
     var titleSafe = escapeHtml(title);
     var imgSafe = escapeHtml(img);
 
@@ -1063,7 +1063,7 @@ function renderDashboardList() {
     card.className = 'product-card';
     card.innerHTML =
       '<div class="product-card-media">' +
-        '<img src="' + imgSafe + '" alt="' + titleSafe + '" onerror="this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\'">' +
+        '<img src="' + imgSafe + '" alt="' + titleSafe + '" onerror="this.src=\'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Thassos_marble.jpg/1920px-Thassos_marble.jpg\'">' +
         '<span class="status-pill ' + (isActive ? 'status-active' : 'status-draft') + '">' +
           (isActive ? (isAr ? 'معروض نشط' : 'ACTIVE') : (isAr ? 'مخفي' : 'HIDDEN')) +
         '</span>' +
@@ -1125,7 +1125,7 @@ function previewImage() {
   var url = document.getElementById('mImage').value.trim();
   var box = document.getElementById('imgPreview');
   if (url) {
-    box.innerHTML = '<img src="' + escapeHtml(url) + '" onerror="this.onerror=null;this.src=\'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80\';">';
+    box.innerHTML = '<img src="' + escapeHtml(url) + '" onerror="this.onerror=null;this.src=\'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Thassos_marble.jpg/1920px-Thassos_marble.jpg\';">';
   } else {
     box.innerHTML = '<span style="color:var(--text-muted);font-size:12px;font-family:var(--font-mono)">' + (isAr ? 'معاينة الصورة' : 'Image Preview') + '</span>';
   }
@@ -1186,7 +1186,7 @@ async function saveProductItem(e) {
     name_en: document.getElementById('mNameEn').value.trim(),
     desc_ar: document.getElementById('mDescAr').value.trim(),
     desc_en: document.getElementById('mDescEn').value.trim(),
-    image: document.getElementById('mImage').value.trim() || 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    image: document.getElementById('mImage').value.trim() || 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/Thassos_marble.jpg/1920px-Thassos_marble.jpg',
     density: document.getElementById('mDensity').value.trim() || '2680',
     compressive_strength: document.getElementById('mCompressive').value.trim() || '128',
     flexural_strength: document.getElementById('mFlexural').value.trim() || '14.2',
