@@ -642,7 +642,7 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
             <span class="stat-title" id="statLbl4">STOCK INVENTORY</span>
             <span class="stat-icon">🏗️</span>
           </div>
-          <div class="stat-value" id="statInventory">4,120 <span style="font-size:16px;color:var(--sand-soft)">m²</span></div>
+          <div class="stat-value" id="statInventory">4,120 m²</div>
         </div>
       </div>
     </div>
@@ -819,9 +819,13 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
             <label>Address (English)</label>
             <input type="text" id="setAddressEn">
           </div>
-          <div class="form-field col-2">
+          <div class="form-field">
             <label>السجل التجاري</label>
             <input type="text" id="setCR" placeholder="CR: 1234567 (Sultanate of Oman)">
+          </div>
+          <div class="form-field">
+            <label>المخزون المتوفر (يظهر بلوحة التحكم فقط)</label>
+            <input type="text" id="setStockInventory" placeholder="4,120 m²">
           </div>
         </div>
 
@@ -1022,6 +1026,7 @@ function renderDashboardList() {
   // Update Counters
   document.getElementById('statCountTotal').textContent = allProducts.length;
   document.getElementById('statCountActive').textContent = allProducts.filter(function(p){ return p.active !== false; }).length;
+  document.getElementById('statInventory').textContent = window.ProductStore.getSiteSettings().stock_inventory || '—';
 
   if (products.length === 0) {
     container.innerHTML = '<div style="grid-column:1/-1;text-align:center;padding:50px;background:var(--bg-panel);border:1px dashed var(--border);border-radius:10px;color:var(--text-muted);">'
@@ -1235,6 +1240,7 @@ function openSiteSettingsModal() {
   document.getElementById('setAddressAr').value = s.contact_address_ar || '';
   document.getElementById('setAddressEn').value = s.contact_address_en || '';
   document.getElementById('setCR').value = s.cr_number || '';
+  document.getElementById('setStockInventory').value = s.stock_inventory || '';
   document.getElementById('setQ1Image').value = s.quarry1_image || '';
   document.getElementById('setQ1TitleAr').value = s.quarry1_title_ar || '';
   document.getElementById('setQ1TitleEn').value = s.quarry1_title_en || '';
@@ -1263,6 +1269,7 @@ async function saveSiteSettingsForm(e) {
     contact_address_ar: document.getElementById('setAddressAr').value.trim(),
     contact_address_en: document.getElementById('setAddressEn').value.trim(),
     cr_number: document.getElementById('setCR').value.trim(),
+    stock_inventory: document.getElementById('setStockInventory').value.trim(),
     quarry1_image: document.getElementById('setQ1Image').value.trim(),
     quarry1_title_ar: document.getElementById('setQ1TitleAr').value.trim(),
     quarry1_title_en: document.getElementById('setQ1TitleEn').value.trim(),
@@ -1327,6 +1334,11 @@ async function resetToFactory() {
 applyAdminLanguage();
 checkAuth();
 window.addEventListener('gsr_products_updated', function () {
+  if (document.getElementById('dashboardView').style.display !== 'none') {
+    renderDashboardList();
+  }
+});
+window.addEventListener('gsr_settings_updated', function () {
   if (document.getElementById('dashboardView').style.display !== 'none') {
     renderDashboardList();
   }
