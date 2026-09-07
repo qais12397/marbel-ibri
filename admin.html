@@ -1295,7 +1295,7 @@ function closeSiteSettingsModal() {
 async function saveSiteSettingsForm(e) {
   e.preventDefault();
   var data = {
-    whatsapp_number: document.getElementById('setWhatsapp').value.trim(),
+    whatsapp_number: document.getElementById('setWhatsapp').value.replace(/\D/g, ''),
     contact_email: document.getElementById('setEmail').value.trim(),
     contact_address_ar: document.getElementById('setAddressAr').value.trim(),
     contact_address_en: document.getElementById('setAddressEn').value.trim(),
