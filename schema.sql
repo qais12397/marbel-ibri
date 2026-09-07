@@ -104,5 +104,54 @@ VALUES
 )
 ON CONFLICT (id) DO NOTHING;
 
--- 6. Storage Bucket Configuration (Run in Supabase Storage UI or API)
+-- 6. Site Settings Table (contact info + quarry section content shown on index.html,
+--    editable from admin.html's "Site Settings" panel). Single-row table (id = 1).
+CREATE TABLE IF NOT EXISTS public.site_settings (
+    id INT PRIMARY KEY DEFAULT 1,
+    whatsapp_number TEXT DEFAULT '96890000000',
+    contact_email TEXT DEFAULT 'sales@globalshiningrocks.com',
+    contact_address_ar TEXT DEFAULT 'المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان',
+    contact_address_en TEXT DEFAULT 'Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman',
+    cr_number TEXT DEFAULT 'CR: 1348920 (Sultanate of Oman)',
+    quarry1_image TEXT,
+    quarry1_title_ar TEXT,
+    quarry1_title_en TEXT,
+    quarry1_caption_ar TEXT,
+    quarry1_caption_en TEXT,
+    quarry2_image TEXT,
+    quarry2_title_ar TEXT,
+    quarry2_title_en TEXT,
+    quarry2_caption_ar TEXT,
+    quarry2_caption_en TEXT,
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    CONSTRAINT single_row CHECK (id = 1)
+);
+
+ALTER TABLE public.site_settings ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow public read-only access on site_settings"
+ON public.site_settings FOR SELECT USING (true);
+
+-- Same admin-email restriction as the products table - see the note above.
+CREATE POLICY "Allow write access to the site admin only"
+ON public.site_settings FOR ALL TO authenticated
+USING (auth.jwt() ->> 'email' = 'alsukit96@gmail.com')
+WITH CHECK (auth.jwt() ->> 'email' = 'alsukit96@gmail.com');
+
+INSERT INTO public.site_settings (id, whatsapp_number, contact_email, contact_address_ar, contact_address_en, cr_number, quarry1_image, quarry1_title_ar, quarry1_title_en, quarry1_caption_ar, quarry1_caption_en, quarry2_image, quarry2_title_ar, quarry2_title_en, quarry2_caption_ar, quarry2_caption_en)
+VALUES (
+    1, '96890000000', 'sales@globalshiningrocks.com',
+    'المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان',
+    'Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman',
+    'CR: 1348920 (Sultanate of Oman)',
+    'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    'قص الواجهات بمناشير السلك الماسي', 'DIAMOND WIRE SAW EXTRACTION',
+    'محجرنا الخاص في عبري، محافظة الظاهرة.', 'Our own mining concession in Ibri, Al Dhahirah.',
+    'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80',
+    'مصنع النشر والصقل والتعبئة', 'PROCESSING PLANT & GANG SAWS',
+    'خطوط صقل آلية ورافعات علوية ٧ طن.', 'Automated polishing lines, 7-tonne overhead crane.'
+)
+ON CONFLICT (id) DO NOTHING;
+
+-- 7. Storage Bucket Configuration (Run in Supabase Storage UI or API)
 -- Bucket Name: "product-images" (Public bucket enabled)

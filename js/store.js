@@ -106,7 +106,27 @@
     }
   ];
 
+  var DEFAULT_SETTINGS = {
+    id: 1,
+    whatsapp_number: '96890000000',
+    contact_email: 'sales@globalshiningrocks.com',
+    contact_address_ar: 'المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان',
+    contact_address_en: 'Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman',
+    cr_number: 'CR: 1348920 (Sultanate of Oman)',
+    quarry1_image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
+    quarry1_title_ar: 'قص الواجهات بمناشير السلك الماسي',
+    quarry1_title_en: 'DIAMOND WIRE SAW EXTRACTION',
+    quarry1_caption_ar: 'محجرنا الخاص في عبري، محافظة الظاهرة.',
+    quarry1_caption_en: 'Our own mining concession in Ibri, Al Dhahirah.',
+    quarry2_image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80',
+    quarry2_title_ar: 'مصنع النشر والصقل والتعبئة',
+    quarry2_title_en: 'PROCESSING PLANT & GANG SAWS',
+    quarry2_caption_ar: 'خطوط صقل آلية ورافعات علوية ٧ طن.',
+    quarry2_caption_en: 'Automated polishing lines, 7-tonne overhead crane.'
+  };
+
   var STORAGE_KEY = 'gsr_products_data_v3';
+  var SETTINGS_STORAGE_KEY = 'gsr_site_settings_v1';
   var AUTH_KEY = 'gsr_admin_session_v3';
 
   var cfg = window.GSR_CONFIG || {};
@@ -179,10 +199,58 @@
       });
     },
 
+    // ---- Site settings (contact info, quarry section content) ----
+
+    getSiteSettings: function () {
+      try {
+        var raw = localStorage.getItem(SETTINGS_STORAGE_KEY);
+        var settings = raw ? JSON.parse(raw) : null;
+        if (!settings) {
+          settings = DEFAULT_SETTINGS;
+          this.saveLocalSettingsCache(settings);
+        }
+        return settings;
+      } catch (e) {
+        console.error('Error loading site settings from storage:', e);
+        return DEFAULT_SETTINGS;
+      }
+    },
+
+    saveLocalSettingsCache: function (settings) {
+      localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(settings));
+      window.dispatchEvent(new CustomEvent('gsr_settings_updated', { detail: settings }));
+    },
+
+    refreshSettingsFromCloud: function () {
+      var client = getClient();
+      if (!client) return Promise.resolve(false);
+      return client.from('site_settings').select('*').eq('id', 1).maybeSingle().then(function (res) {
+        if (res.error) {
+          console.error('Supabase settings fetch error:', res.error.message);
+          return false;
+        }
+        if (res.data) ProductStore.saveLocalSettingsCache(res.data);
+        return true;
+      });
+    },
+
+    saveSiteSettings: function (data) {
+      var client = getClient();
+      var payload = Object.assign({}, data, { id: 1, updated_at: new Date().toISOString() });
+      if (client) {
+        return client.from('site_settings').upsert(payload).then(function (res) {
+          if (res.error) throw new Error(res.error.message);
+          return ProductStore.refreshSettingsFromCloud().then(function () { return payload; });
+        });
+      }
+      this.saveLocalSettingsCache(Object.assign({}, this.getSiteSettings(), payload));
+      return Promise.resolve(payload);
+    },
+
     // Loads initial data. Call once on page load.
     init: function () {
       if (CLOUD_ENABLED) {
-        return this.refreshFromCloud();
+        return Promise.all([this.refreshFromCloud(), this.refreshSettingsFromCloud()]);
       }
       return Promise.resolve(false);
     },

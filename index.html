@@ -770,7 +770,7 @@ footer {
 
     <div class="header-tools">
       <button class="pill-btn pill-lang" id="btnLangToggle">English</button>
-      <a class="pill-btn pill-wa" href="https://wa.me/96890000000" target="_blank" rel="noopener" data-en="WhatsApp" data-ar="واتساب">واتساب</a>
+      <a class="pill-btn pill-wa" id="navWhatsAppLink" href="https://wa.me/96890000000" target="_blank" rel="noopener" data-en="WhatsApp" data-ar="واتساب">واتساب</a>
       <button class="menu-toggle" id="menuToggle" aria-label="Toggle Navigation">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
       </button>
@@ -904,17 +904,17 @@ footer {
 
     <div class="quarry-media-grid">
       <div class="quarry-media-card">
-        <img src="https://images.unsplash.com/photo-1578328819058-b69f3a3b0f6b?auto=format&fit=crop&w=1200&q=80" alt="Quarry Extraction Ibri">
+        <img id="quarry1Img" src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80" alt="Quarry Extraction Ibri">
         <div class="quarry-caption">
-          <strong data-en="DIAMOND WIRE SAW EXTRACTION" data-ar="قص الواجهات بمناشير السلك الماسي">قص الواجهات بمناشير السلك الماسي</strong>
-          <em data-en="Our own mining concession in Ibri, Al Dhahirah." data-ar="محجرنا الخاص في عبري، محافظة الظاهرة.">محجرنا الخاص في عبري، محافظة الظاهرة.</em>
+          <strong id="quarry1Title" data-en="DIAMOND WIRE SAW EXTRACTION" data-ar="قص الواجهات بمناشير السلك الماسي">قص الواجهات بمناشير السلك الماسي</strong>
+          <em id="quarry1Caption" data-en="Our own mining concession in Ibri, Al Dhahirah." data-ar="محجرنا الخاص في عبري، محافظة الظاهرة.">محجرنا الخاص في عبري، محافظة الظاهرة.</em>
         </div>
       </div>
       <div class="quarry-media-card">
-        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="Processing Plant">
+        <img id="quarry2Img" src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=1200&q=80" alt="Processing Plant">
         <div class="quarry-caption">
-          <strong data-en="PROCESSING PLANT &amp; GANG SAWS" data-ar="مصنع النشر والصقل والتعبئة">مصنع النشر والصقل والتعبئة</strong>
-          <em data-en="Automated polishing lines, 7-tonne overhead crane." data-ar="خطوط صقل آلية ورافعات علوية ٧ طن.">خطوط صقل آلية ورافعات علوية ٧ طن.</em>
+          <strong id="quarry2Title" data-en="PROCESSING PLANT &amp; GANG SAWS" data-ar="مصنع النشر والصقل والتعبئة">مصنع النشر والصقل والتعبئة</strong>
+          <em id="quarry2Caption" data-en="Automated polishing lines, 7-tonne overhead crane." data-ar="خطوط صقل آلية ورافعات علوية ٧ طن.">خطوط صقل آلية ورافعات علوية ٧ طن.</em>
         </div>
       </div>
     </div>
@@ -1011,19 +1011,19 @@ footer {
         <dl>
           <div class="contact-item">
             <dt data-en="Head Office & Quarry" data-ar="المقر والمحجر">المقر والمحجر</dt>
-            <dd data-en="Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman" data-ar="المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان">المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان</dd>
+            <dd id="contactAddress" data-en="Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman" data-ar="المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان">المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان</dd>
           </div>
           <div class="contact-item">
             <dt data-en="WhatsApp / Phone" data-ar="الهاتف / واتساب">الهاتف / واتساب</dt>
-            <dd><a href="https://wa.me/96890000000">+968 9000 0000</a></dd>
+            <dd><a id="contactWhatsAppLink" href="https://wa.me/96890000000">+968 9000 0000</a></dd>
           </div>
           <div class="contact-item">
             <dt data-en="Sales Email" data-ar="البريد الإلكتروني">البريد الإلكتروني</dt>
-            <dd><a href="mailto:sales@globalshiningrocks.com">sales@globalshiningrocks.com</a></dd>
+            <dd><a id="contactEmailLink" href="mailto:sales@globalshiningrocks.com">sales@globalshiningrocks.com</a></dd>
           </div>
           <div class="contact-item">
             <dt data-en="Commercial Registration (CR)" data-ar="السجل التجاري">السجل التجاري</dt>
-            <dd style="font-family:var(--font-mono)">CR: 1348920 (Sultanate of Oman)</dd>
+            <dd id="contactCR" style="font-family:var(--font-mono)">CR: 1348920 (Sultanate of Oman)</dd>
           </div>
         </dl>
       </div>
@@ -1266,7 +1266,63 @@ function handleQuoteSubmit(e) {
     + '\n' + (isAr ? 'ميناء أو مدينة التسليم' : 'Destination') + ': ' + dest
     + '\n' + (isAr ? 'بيانات التواصل' : 'Contact') + ': ' + contact;
 
-  window.open('https://wa.me/96890000000?text=' + encodeURIComponent(msg), '_blank');
+  var waNumber = (window.ProductStore ? window.ProductStore.getSiteSettings().whatsapp_number : null) || '96890000000';
+  window.open('https://wa.me/' + waNumber + '?text=' + encodeURIComponent(msg), '_blank');
+}
+
+function applySiteSettings(s) {
+  if (!s) return;
+
+  var navWa = document.getElementById('navWhatsAppLink');
+  if (navWa && s.whatsapp_number) navWa.href = 'https://wa.me/' + s.whatsapp_number;
+
+  var contactWa = document.getElementById('contactWhatsAppLink');
+  if (contactWa && s.whatsapp_number) {
+    contactWa.href = 'https://wa.me/' + s.whatsapp_number;
+    contactWa.textContent = '+' + s.whatsapp_number;
+  }
+
+  var emailLink = document.getElementById('contactEmailLink');
+  if (emailLink && s.contact_email) {
+    emailLink.href = 'mailto:' + s.contact_email;
+    emailLink.textContent = s.contact_email;
+  }
+
+  var addr = document.getElementById('contactAddress');
+  if (addr) {
+    if (s.contact_address_en) addr.setAttribute('data-en', s.contact_address_en);
+    if (s.contact_address_ar) addr.setAttribute('data-ar', s.contact_address_ar);
+    addr.textContent = isAr ? (s.contact_address_ar || addr.textContent) : (s.contact_address_en || addr.textContent);
+  }
+
+  var cr = document.getElementById('contactCR');
+  if (cr && s.cr_number) cr.textContent = s.cr_number;
+
+  setQuarryCard(1, s);
+  setQuarryCard(2, s);
+}
+
+function setQuarryCard(n, s) {
+  var img = document.getElementById('quarry' + n + 'Img');
+  var title = document.getElementById('quarry' + n + 'Title');
+  var caption = document.getElementById('quarry' + n + 'Caption');
+  var imgVal = s['quarry' + n + '_image'];
+  var titleAr = s['quarry' + n + '_title_ar'];
+  var titleEn = s['quarry' + n + '_title_en'];
+  var capAr = s['quarry' + n + '_caption_ar'];
+  var capEn = s['quarry' + n + '_caption_en'];
+
+  if (img && imgVal) img.src = imgVal;
+  if (title) {
+    if (titleEn) title.setAttribute('data-en', titleEn);
+    if (titleAr) title.setAttribute('data-ar', titleAr);
+    title.textContent = isAr ? (titleAr || title.textContent) : (titleEn || title.textContent);
+  }
+  if (caption) {
+    if (capEn) caption.setAttribute('data-en', capEn);
+    if (capAr) caption.setAttribute('data-ar', capAr);
+    caption.textContent = isAr ? (capAr || caption.textContent) : (capEn || caption.textContent);
+  }
 }
 
 // Listen for updates from Admin Dashboard
@@ -1274,14 +1330,23 @@ window.addEventListener('storage', function(e){
   if (e.key === 'gsr_products_data_v3') {
     renderMaterialsAndCatalog();
   }
+  if (e.key === 'gsr_site_settings_v1') {
+    applySiteSettings(window.ProductStore.getSiteSettings());
+  }
 });
 window.addEventListener('gsr_products_updated', function(){
   renderMaterialsAndCatalog();
 });
+window.addEventListener('gsr_settings_updated', function(e){
+  applySiteSettings(e.detail);
+});
 
 // Initialize on Load
 applyLanguage(isAr);
-if (window.ProductStore) window.ProductStore.init();
+if (window.ProductStore) {
+  applySiteSettings(window.ProductStore.getSiteSettings());
+  window.ProductStore.init();
+}
 </script>
 </body>
 </html>

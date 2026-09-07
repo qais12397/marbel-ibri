@@ -602,6 +602,7 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
 
         <button class="btn btn-outline btn-sm" onclick="toggleAdminLang()" id="btnAdminLang">English</button>
         <a href="index.html" target="_blank" class="btn btn-outline btn-sm"><span>↗</span> <span id="lblViewSite">معاينة الموقع</span></a>
+        <button class="btn btn-outline btn-sm" onclick="openSiteSettingsModal()">🏢 <span id="lblSiteSettings">إعدادات الموقع</span></button>
         <button class="btn btn-outline btn-sm" onclick="openCloudModal()">⚙️ <span id="lblConfig">النسخ الاحتياطي</span></button>
         <button class="btn btn-danger btn-sm" onclick="doLogout()" id="lblLogout">خروج</button>
       </div>
@@ -791,6 +792,99 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
   </div>
 </div>
 
+<!-- Site Settings Modal -->
+<div class="modal-overlay" id="siteSettingsModal">
+  <div class="modal-box" style="max-width:760px;">
+    <div class="modal-head">
+      <h2>إعدادات الموقع العامة</h2>
+      <button class="modal-close" onclick="closeSiteSettingsModal()">&times;</button>
+    </div>
+    <form id="siteSettingsForm" onsubmit="saveSiteSettingsForm(event)">
+      <div class="modal-body">
+        <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">بيانات التواصل</h3>
+        <div class="modal-grid">
+          <div class="form-field">
+            <label>رقم الواتساب (أرقام فقط، بمفتاح الدولة بدون +)</label>
+            <input type="text" id="setWhatsapp" placeholder="96890000000">
+          </div>
+          <div class="form-field">
+            <label>البريد الإلكتروني</label>
+            <input type="text" id="setEmail" placeholder="sales@example.com">
+          </div>
+          <div class="form-field">
+            <label>العنوان (عربي)</label>
+            <input type="text" id="setAddressAr">
+          </div>
+          <div class="form-field">
+            <label>Address (English)</label>
+            <input type="text" id="setAddressEn">
+          </div>
+          <div class="form-field col-2">
+            <label>السجل التجاري</label>
+            <input type="text" id="setCR" placeholder="CR: 1234567 (Sultanate of Oman)">
+          </div>
+        </div>
+
+        <hr style="border-color:var(--border);margin:20px 0;">
+        <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">بطاقة المحجر الأولى</h3>
+        <div class="modal-grid">
+          <div class="form-field col-2">
+            <label>رابط الصورة</label>
+            <input type="text" id="setQ1Image" placeholder="https://...">
+          </div>
+          <div class="form-field">
+            <label>العنوان (عربي)</label>
+            <input type="text" id="setQ1TitleAr">
+          </div>
+          <div class="form-field">
+            <label>Title (English)</label>
+            <input type="text" id="setQ1TitleEn">
+          </div>
+          <div class="form-field">
+            <label>الوصف (عربي)</label>
+            <input type="text" id="setQ1CaptionAr">
+          </div>
+          <div class="form-field">
+            <label>Caption (English)</label>
+            <input type="text" id="setQ1CaptionEn">
+          </div>
+        </div>
+
+        <hr style="border-color:var(--border);margin:20px 0;">
+        <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">بطاقة المحجر الثانية</h3>
+        <div class="modal-grid">
+          <div class="form-field col-2">
+            <label>رابط الصورة</label>
+            <input type="text" id="setQ2Image" placeholder="https://...">
+          </div>
+          <div class="form-field">
+            <label>العنوان (عربي)</label>
+            <input type="text" id="setQ2TitleAr">
+          </div>
+          <div class="form-field">
+            <label>Title (English)</label>
+            <input type="text" id="setQ2TitleEn">
+          </div>
+          <div class="form-field">
+            <label>الوصف (عربي)</label>
+            <input type="text" id="setQ2CaptionAr">
+          </div>
+          <div class="form-field">
+            <label>Caption (English)</label>
+            <input type="text" id="setQ2CaptionEn">
+          </div>
+        </div>
+
+        <p id="siteSettingsNotice" style="font-size:12px;color:var(--text-muted);margin-top:16px;"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline" onclick="closeSiteSettingsModal()">إلغاء</button>
+        <button type="submit" class="btn btn-primary">حفظ إعدادات الموقع</button>
+      </div>
+    </form>
+  </div>
+</div>
+
 <div id="toast" class="toast-notice"></div>
 
 <!-- Shared Store -->
@@ -843,7 +937,7 @@ async function checkAuth() {
   document.getElementById('dashboardView').style.display = session ? 'block' : 'none';
   if (session) {
     if (window.ProductStore.isCloudEnabled()) {
-      await window.ProductStore.refreshFromCloud();
+      await Promise.all([window.ProductStore.refreshFromCloud(), window.ProductStore.refreshSettingsFromCloud()]);
     }
     renderDashboardList();
   }
@@ -884,6 +978,7 @@ function applyAdminLanguage() {
   document.getElementById('lblDashBadge').textContent = isAr ? 'لوحة تحكم الإدارة' : 'ADMIN DASHBOARD';
   document.getElementById('lblViewSite').textContent = isAr ? 'معاينة الموقع' : 'View Live Site';
   document.getElementById('lblConfig').textContent = isAr ? 'النسخ الاحتياطي' : 'Backup & Cloud';
+  document.getElementById('lblSiteSettings').textContent = isAr ? 'إعدادات الموقع' : 'Site Settings';
   document.getElementById('lblLogout').textContent = isAr ? 'خروج' : 'Logout';
   document.getElementById('lblAddStone').textContent = isAr ? 'إضافة حجر / منتج جديد' : 'ADD NEW STONE PRODUCT';
   document.getElementById('searchBox').placeholder = isAr ? 'البحث في أصناف الرخام...' : 'Search Stone Products...';
@@ -1084,6 +1179,61 @@ function openCloudModal() {
 
 function closeCloudModal() {
   document.getElementById('cloudModal').classList.remove('open');
+}
+
+function openSiteSettingsModal() {
+  var s = window.ProductStore.getSiteSettings();
+  document.getElementById('setWhatsapp').value = s.whatsapp_number || '';
+  document.getElementById('setEmail').value = s.contact_email || '';
+  document.getElementById('setAddressAr').value = s.contact_address_ar || '';
+  document.getElementById('setAddressEn').value = s.contact_address_en || '';
+  document.getElementById('setCR').value = s.cr_number || '';
+  document.getElementById('setQ1Image').value = s.quarry1_image || '';
+  document.getElementById('setQ1TitleAr').value = s.quarry1_title_ar || '';
+  document.getElementById('setQ1TitleEn').value = s.quarry1_title_en || '';
+  document.getElementById('setQ1CaptionAr').value = s.quarry1_caption_ar || '';
+  document.getElementById('setQ1CaptionEn').value = s.quarry1_caption_en || '';
+  document.getElementById('setQ2Image').value = s.quarry2_image || '';
+  document.getElementById('setQ2TitleAr').value = s.quarry2_title_ar || '';
+  document.getElementById('setQ2TitleEn').value = s.quarry2_title_en || '';
+  document.getElementById('setQ2CaptionAr').value = s.quarry2_caption_ar || '';
+  document.getElementById('setQ2CaptionEn').value = s.quarry2_caption_en || '';
+  document.getElementById('siteSettingsNotice').textContent = window.ProductStore.isCloudEnabled()
+    ? (isAr ? 'التغييرات هنا تنعكس فوراً لكل زوار الموقع.' : 'Changes here apply live for every visitor.')
+    : (isAr ? 'وضع تجريبي محلي: التغييرات تبقى على هذا الجهاز فقط.' : 'Local demo mode: changes stay on this device only.');
+  document.getElementById('siteSettingsModal').classList.add('open');
+}
+
+function closeSiteSettingsModal() {
+  document.getElementById('siteSettingsModal').classList.remove('open');
+}
+
+async function saveSiteSettingsForm(e) {
+  e.preventDefault();
+  var data = {
+    whatsapp_number: document.getElementById('setWhatsapp').value.trim(),
+    contact_email: document.getElementById('setEmail').value.trim(),
+    contact_address_ar: document.getElementById('setAddressAr').value.trim(),
+    contact_address_en: document.getElementById('setAddressEn').value.trim(),
+    cr_number: document.getElementById('setCR').value.trim(),
+    quarry1_image: document.getElementById('setQ1Image').value.trim(),
+    quarry1_title_ar: document.getElementById('setQ1TitleAr').value.trim(),
+    quarry1_title_en: document.getElementById('setQ1TitleEn').value.trim(),
+    quarry1_caption_ar: document.getElementById('setQ1CaptionAr').value.trim(),
+    quarry1_caption_en: document.getElementById('setQ1CaptionEn').value.trim(),
+    quarry2_image: document.getElementById('setQ2Image').value.trim(),
+    quarry2_title_ar: document.getElementById('setQ2TitleAr').value.trim(),
+    quarry2_title_en: document.getElementById('setQ2TitleEn').value.trim(),
+    quarry2_caption_ar: document.getElementById('setQ2CaptionAr').value.trim(),
+    quarry2_caption_en: document.getElementById('setQ2CaptionEn').value.trim()
+  };
+  try {
+    await window.ProductStore.saveSiteSettings(data);
+    closeSiteSettingsModal();
+    showToast(isAr ? 'تم حفظ إعدادات الموقع' : 'Site settings saved');
+  } catch (err) {
+    alert((isAr ? 'تعذّر الحفظ: ' : 'Save failed: ') + err.message);
+  }
 }
 
 function exportDataFile() {
