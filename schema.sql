@@ -116,6 +116,7 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
     stock_inventory TEXT DEFAULT '4,120 m²',
     hero_stat_blocks TEXT DEFAULT '1,200+',
     hero_stat_reserve TEXT DEFAULT '4.5M m³',
+    hero_bg_image TEXT,
     quarry1_image TEXT,
     quarry1_title_ar TEXT,
     quarry1_title_en TEXT,
@@ -141,12 +142,13 @@ ON public.site_settings FOR ALL TO authenticated
 USING (auth.jwt() ->> 'email' = 'alsukit96@gmail.com')
 WITH CHECK (auth.jwt() ->> 'email' = 'alsukit96@gmail.com');
 
-INSERT INTO public.site_settings (id, whatsapp_number, contact_email, contact_address_ar, contact_address_en, cr_number, quarry1_image, quarry1_title_ar, quarry1_title_en, quarry1_caption_ar, quarry1_caption_en, quarry2_image, quarry2_title_ar, quarry2_title_en, quarry2_caption_ar, quarry2_caption_en)
+INSERT INTO public.site_settings (id, whatsapp_number, contact_email, contact_address_ar, contact_address_en, cr_number, hero_bg_image, quarry1_image, quarry1_title_ar, quarry1_title_en, quarry1_caption_ar, quarry1_caption_en, quarry2_image, quarry2_title_ar, quarry2_title_en, quarry2_caption_ar, quarry2_caption_en)
 VALUES (
     1, '96890000000', 'sales@globalshiningrocks.com',
     'المنطقة الصناعية بعبري، محافظة الظاهرة، سلطنة عُمان',
     'Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman',
     'CR: 1348920 (Sultanate of Oman)',
+    'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marble_Quarry_near_Carrera.jpg/1920px-Marble_Quarry_near_Carrera.jpg',
     'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Carrara_marble_quarry_face.jpg/1920px-Carrara_marble_quarry_face.jpg',
     'قص الواجهات بمناشير السلك الماسي', 'DIAMOND WIRE SAW EXTRACTION',
     'محجرنا الخاص في عبري، محافظة الظاهرة.', 'Our own mining concession in Ibri, Al Dhahirah.',

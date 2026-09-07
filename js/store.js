@@ -116,6 +116,7 @@
     stock_inventory: '4,120 m²',
     hero_stat_blocks: '1,200+',
     hero_stat_reserve: '4.5M m³',
+    hero_bg_image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marble_Quarry_near_Carrera.jpg/1920px-Marble_Quarry_near_Carrera.jpg',
     quarry1_image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Carrara_marble_quarry_face.jpg/1920px-Carrara_marble_quarry_face.jpg',
     quarry1_title_ar: 'قص الواجهات بمناشير السلك الماسي',
     quarry1_title_en: 'DIAMOND WIRE SAW EXTRACTION',

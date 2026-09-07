@@ -830,6 +830,21 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
         </div>
 
         <hr style="border-color:var(--border);margin:20px 0;">
+        <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">صورة خلفية الواجهة الرئيسية</h3>
+        <div class="modal-grid">
+          <div class="form-field col-2">
+            <label>رابط الصورة أو رفع ملف</label>
+            <div style="display:flex;gap:10px;">
+              <input type="text" id="setHeroBgImage" placeholder="https://...">
+              <label class="btn btn-outline" style="cursor:pointer;white-space:nowrap;">
+                📁 رفع ملف
+                <input type="file" accept="image/*" style="display:none;" onchange="handleQuarryImageFile(event,'setHeroBgImage')">
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <hr style="border-color:var(--border);margin:20px 0;">
         <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">إحصائيات الواجهة الرئيسية</h3>
         <div class="modal-grid">
           <div class="form-field">
@@ -1254,6 +1269,7 @@ function openSiteSettingsModal() {
   document.getElementById('setAddressEn').value = s.contact_address_en || '';
   document.getElementById('setCR').value = s.cr_number || '';
   document.getElementById('setStockInventory').value = s.stock_inventory || '';
+  document.getElementById('setHeroBgImage').value = s.hero_bg_image || '';
   document.getElementById('setHeroBlocks').value = s.hero_stat_blocks || '';
   document.getElementById('setHeroReserve').value = s.hero_stat_reserve || '';
   document.getElementById('setQ1Image').value = s.quarry1_image || '';
@@ -1285,6 +1301,7 @@ async function saveSiteSettingsForm(e) {
     contact_address_en: document.getElementById('setAddressEn').value.trim(),
     cr_number: document.getElementById('setCR').value.trim(),
     stock_inventory: document.getElementById('setStockInventory').value.trim(),
+    hero_bg_image: document.getElementById('setHeroBgImage').value.trim(),
     hero_stat_blocks: document.getElementById('setHeroBlocks').value.trim(),
     hero_stat_reserve: document.getElementById('setHeroReserve').value.trim(),
     quarry1_image: document.getElementById('setQ1Image').value.trim(),

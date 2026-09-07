@@ -239,7 +239,7 @@ nav a:hover {
   margin-bottom: 26px;
 }
 .hero-tag-row .hero-line {
-  width: 70px;
+  width: 120px;
   height: 1px;
   background: rgba(232, 222, 206, 0.45);
 }
@@ -837,14 +837,14 @@ footer {
 <section class="hero-section">
   <div class="wrap">
     <div class="hero-card">
-      <img class="hero-bg-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marble_Quarry_near_Carrera.jpg/1920px-Marble_Quarry_near_Carrera.jpg" alt="Oman Marble Slabs">
+      <img class="hero-bg-img" id="heroBgImg" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/Marble_Quarry_near_Carrera.jpg/1920px-Marble_Quarry_near_Carrera.jpg" alt="Oman Marble Slabs">
       <div class="hero-overlay"></div>
 
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-tag-row">
             <span class="hero-line"></span>
-            <span class="hero-tag" data-en="Direct Mining &amp; Export Since 2018" data-ar="استخراج وتصدير مباشر منذ 2018">استخراج وتصدير مباشر منذ 2018</span>
+            <span class="hero-tag" data-en="Since 2018" data-ar="منذ 2018">منذ 2018</span>
             <span class="hero-line"></span>
           </div>
           <h1 class="hero-title" data-en="Oman Marble,<br>Cut At The <u>Source</u>" data-ar="رخام عُمان،<br>من قلب <u>المصدر</u>">رخام عُمان،<br>من قلب <u>المصدر</u></h1>
@@ -1338,6 +1338,9 @@ function handleQuoteSubmit(e) {
 
 function applySiteSettings(s) {
   if (!s) return;
+
+  var heroBg = document.getElementById('heroBgImg');
+  if (heroBg && s.hero_bg_image) heroBg.src = s.hero_bg_image;
 
   var heroBlocks = document.getElementById('heroStatBlocks');
   if (heroBlocks && s.hero_stat_blocks) heroBlocks.textContent = s.hero_stat_blocks;
