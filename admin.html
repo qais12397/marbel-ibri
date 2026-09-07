@@ -829,8 +829,14 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
         <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">بطاقة المحجر الأولى</h3>
         <div class="modal-grid">
           <div class="form-field col-2">
-            <label>رابط الصورة</label>
-            <input type="text" id="setQ1Image" placeholder="https://...">
+            <label>رابط الصورة أو رفع ملف</label>
+            <div style="display:flex;gap:10px;">
+              <input type="text" id="setQ1Image" placeholder="https://...">
+              <label class="btn btn-outline" style="cursor:pointer;white-space:nowrap;">
+                📁 رفع ملف
+                <input type="file" accept="image/*" style="display:none;" onchange="handleQuarryImageFile(event,'setQ1Image')">
+              </label>
+            </div>
           </div>
           <div class="form-field">
             <label>العنوان (عربي)</label>
@@ -854,8 +860,14 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
         <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">بطاقة المحجر الثانية</h3>
         <div class="modal-grid">
           <div class="form-field col-2">
-            <label>رابط الصورة</label>
-            <input type="text" id="setQ2Image" placeholder="https://...">
+            <label>رابط الصورة أو رفع ملف</label>
+            <div style="display:flex;gap:10px;">
+              <input type="text" id="setQ2Image" placeholder="https://...">
+              <label class="btn btn-outline" style="cursor:pointer;white-space:nowrap;">
+                📁 رفع ملف
+                <input type="file" accept="image/*" style="display:none;" onchange="handleQuarryImageFile(event,'setQ2Image')">
+              </label>
+            </div>
           </div>
           <div class="form-field">
             <label>العنوان (عربي)</label>
@@ -1101,15 +1113,50 @@ function previewImage() {
   }
 }
 
+// Downscales an image file client-side (max dimension + JPEG quality) before turning it
+// into a data URL, so a multi-MB phone photo doesn't get stored raw in the database.
+function resizeImageFile(file, maxDim, quality) {
+  return new Promise(function (resolve, reject) {
+    var reader = new FileReader();
+    reader.onerror = function () { reject(new Error('Could not read the file')); };
+    reader.onload = function (evt) {
+      var img = new Image();
+      img.onerror = function () { reject(new Error('Could not decode the image')); };
+      img.onload = function () {
+        var scale = Math.min(1, maxDim / Math.max(img.width, img.height));
+        var w = Math.round(img.width * scale);
+        var h = Math.round(img.height * scale);
+        var canvas = document.createElement('canvas');
+        canvas.width = w;
+        canvas.height = h;
+        canvas.getContext('2d').drawImage(img, 0, 0, w, h);
+        resolve(canvas.toDataURL('image/jpeg', quality));
+      };
+      img.src = evt.target.result;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
 function handleImageFile(e) {
   var file = e.target.files[0];
   if (!file) return;
-  var reader = new FileReader();
-  reader.onload = function(evt) {
-    document.getElementById('mImage').value = evt.target.result;
+  resizeImageFile(file, 1600, 0.82).then(function (dataUrl) {
+    document.getElementById('mImage').value = dataUrl;
     previewImage();
-  };
-  reader.readAsDataURL(file);
+  }).catch(function (err) {
+    alert((isAr ? 'تعذّر معالجة الصورة: ' : 'Could not process image: ') + err.message);
+  });
+}
+
+function handleQuarryImageFile(e, fieldId) {
+  var file = e.target.files[0];
+  if (!file) return;
+  resizeImageFile(file, 1600, 0.82).then(function (dataUrl) {
+    document.getElementById(fieldId).value = dataUrl;
+  }).catch(function (err) {
+    alert((isAr ? 'تعذّر معالجة الصورة: ' : 'Could not process image: ') + err.message);
+  });
 }
 
 async function saveProductItem(e) {
