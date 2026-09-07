@@ -114,6 +114,8 @@
     contact_address_en: 'Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman',
     cr_number: 'CR: 1348920 (Sultanate of Oman)',
     stock_inventory: '4,120 m²',
+    hero_stat_blocks: '1,200+',
+    hero_stat_reserve: '4.5M m³',
     quarry1_image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80',
     quarry1_title_ar: 'قص الواجهات بمناشير السلك الماسي',
     quarry1_title_en: 'DIAMOND WIRE SAW EXTRACTION',

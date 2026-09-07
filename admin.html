@@ -830,6 +830,19 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
         </div>
 
         <hr style="border-color:var(--border);margin:20px 0;">
+        <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">إحصائيات الواجهة الرئيسية</h3>
+        <div class="modal-grid">
+          <div class="form-field">
+            <label>كتلة / شهرياً</label>
+            <input type="text" id="setHeroBlocks" placeholder="1,200+">
+          </div>
+          <div class="form-field">
+            <label>الاحتياطي المقدّر</label>
+            <input type="text" id="setHeroReserve" placeholder="4.5M m³">
+          </div>
+        </div>
+
+        <hr style="border-color:var(--border);margin:20px 0;">
         <h3 style="font-size:13px;color:var(--sand-gold);margin-bottom:12px;">بطاقة المحجر الأولى</h3>
         <div class="modal-grid">
           <div class="form-field col-2">
@@ -1241,6 +1254,8 @@ function openSiteSettingsModal() {
   document.getElementById('setAddressEn').value = s.contact_address_en || '';
   document.getElementById('setCR').value = s.cr_number || '';
   document.getElementById('setStockInventory').value = s.stock_inventory || '';
+  document.getElementById('setHeroBlocks').value = s.hero_stat_blocks || '';
+  document.getElementById('setHeroReserve').value = s.hero_stat_reserve || '';
   document.getElementById('setQ1Image').value = s.quarry1_image || '';
   document.getElementById('setQ1TitleAr').value = s.quarry1_title_ar || '';
   document.getElementById('setQ1TitleEn').value = s.quarry1_title_en || '';
@@ -1270,6 +1285,8 @@ async function saveSiteSettingsForm(e) {
     contact_address_en: document.getElementById('setAddressEn').value.trim(),
     cr_number: document.getElementById('setCR').value.trim(),
     stock_inventory: document.getElementById('setStockInventory').value.trim(),
+    hero_stat_blocks: document.getElementById('setHeroBlocks').value.trim(),
+    hero_stat_reserve: document.getElementById('setHeroReserve').value.trim(),
     quarry1_image: document.getElementById('setQ1Image').value.trim(),
     quarry1_title_ar: document.getElementById('setQ1TitleAr').value.trim(),
     quarry1_title_en: document.getElementById('setQ1TitleEn').value.trim(),

@@ -809,11 +809,11 @@ footer {
         <!-- Floating Stats Badge (Matching Mockup) -->
         <div class="hero-stats-badge">
           <div class="stat-item">
-            <div class="stat-val">1,200+</div>
+            <div class="stat-val" id="heroStatBlocks">1,200+</div>
             <div class="stat-lbl" data-en="Blocks / Month" data-ar="كتلة / شهرياً">كتلة / شهرياً</div>
           </div>
           <div class="stat-item">
-            <div class="stat-val">4.5M <span style="font-size:18px">m³</span></div>
+            <div class="stat-val" id="heroStatReserve">4.5M <span style="font-size:18px">m³</span></div>
             <div class="stat-lbl" data-en="Reserve Estimate" data-ar="الاحتياطي المقدّر">الاحتياطي المقدّر</div>
           </div>
         </div>
@@ -1272,6 +1272,12 @@ function handleQuoteSubmit(e) {
 
 function applySiteSettings(s) {
   if (!s) return;
+
+  var heroBlocks = document.getElementById('heroStatBlocks');
+  if (heroBlocks && s.hero_stat_blocks) heroBlocks.textContent = s.hero_stat_blocks;
+
+  var heroReserve = document.getElementById('heroStatReserve');
+  if (heroReserve && s.hero_stat_reserve) heroReserve.textContent = s.hero_stat_reserve;
 
   var navWa = document.getElementById('navWhatsAppLink');
   if (navWa && s.whatsapp_number) navWa.href = 'https://wa.me/' + s.whatsapp_number;

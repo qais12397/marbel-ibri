@@ -114,6 +114,8 @@ CREATE TABLE IF NOT EXISTS public.site_settings (
     contact_address_en TEXT DEFAULT 'Ibri Industrial Area, Al Dhahirah Governorate, Sultanate of Oman',
     cr_number TEXT DEFAULT 'CR: 1348920 (Sultanate of Oman)',
     stock_inventory TEXT DEFAULT '4,120 m²',
+    hero_stat_blocks TEXT DEFAULT '1,200+',
+    hero_stat_reserve TEXT DEFAULT '4.5M m³',
     quarry1_image TEXT,
     quarry1_title_ar TEXT,
     quarry1_title_en TEXT,
