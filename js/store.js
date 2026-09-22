@@ -400,6 +400,41 @@
         return Promise.resolve({ success: true, session: session });
       }
       return Promise.resolve({ success: false, error: 'بيانات الدخول غير صحيحة (وضع تجريبي محلي).' });
+    },
+
+    requestPasswordReset: function (email) {
+      var client = getClient();
+      if (!client) {
+        return Promise.resolve({ success: false, error: 'Password reset requires cloud mode (connect Supabase first).' });
+      }
+      return client.auth.resetPasswordForEmail((email || '').trim(), {
+        redirectTo: window.location.origin + window.location.pathname
+      }).then(function (res) {
+        if (res.error) return { success: false, error: res.error.message };
+        return { success: true };
+      });
+    },
+
+    updatePassword: function (newPassword) {
+      var client = getClient();
+      if (!client) {
+        return Promise.resolve({ success: false, error: 'Password reset requires cloud mode (connect Supabase first).' });
+      }
+      return client.auth.updateUser({ password: newPassword }).then(function (res) {
+        if (res.error) return { success: false, error: res.error.message };
+        return { success: true };
+      });
+    },
+
+    // Fires callback(event, session) on Supabase auth events (e.g. 'PASSWORD_RECOVERY').
+    // Returns null (and never fires) when cloud mode isn't configured.
+    onAuthEvent: function (callback) {
+      var client = getClient();
+      if (!client) return null;
+      var sub = client.auth.onAuthStateChange(function (event, session) {
+        callback(event, session);
+      });
+      return sub;
     }
   };
 

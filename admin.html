@@ -573,7 +573,30 @@ body[dir="rtl"] .stat-value { font-family: var(--font-sans); }
       <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px;padding:12px;">تسجيل الدخول</button>
     </form>
 
+    <a href="#" onclick="requestPasswordReset(event)" id="lblForgotPassword" style="display:block;margin-top:14px;font-size:12.5px;color:var(--sand-soft);text-decoration:underline;">نسيت كلمة المرور؟</a>
+
     <div id="loginModeNotice" style="margin-top:20px;padding:10px;background:rgba(255,255,255,0.04);border-radius:6px;font-family:var(--font-mono);font-size:11.5px;color:var(--sand-soft);text-align:start;"></div>
+  </div>
+</div>
+
+<!-- Password Recovery View -->
+<div id="resetPasswordView" class="login-container" style="display:none;">
+  <div class="login-box">
+    <div class="brand-icon" style="margin:0 auto 16px;width:52px;height:52px;font-size:24px;">GSR</div>
+    <h2 style="font-family:var(--font-serif);margin-bottom:6px;font-size:22px;" id="lblResetTitle">تعيين كلمة مرور جديدة</h2>
+    <p style="color:var(--sand-gold);font-family:var(--font-mono);font-size:12px;margin-bottom:28px;" id="lblResetSub">أدخل كلمة المرور الجديدة لحسابك</p>
+
+    <form onsubmit="submitNewPassword(event)">
+      <div class="form-field" style="text-align:start;">
+        <label id="lblNewPass1">كلمة المرور الجديدة</label>
+        <input type="password" id="newPass1" required autocomplete="new-password" minlength="6">
+      </div>
+      <div class="form-field" style="text-align:start;">
+        <label id="lblNewPass2">تأكيد كلمة المرور</label>
+        <input type="password" id="newPass2" required autocomplete="new-password" minlength="6">
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%;margin-top:12px;padding:12px;" id="lblResetSubmit">حفظ كلمة المرور</button>
+    </form>
   </div>
 </div>
 
@@ -1007,6 +1030,47 @@ async function doLogout() {
   }
 }
 
+async function requestPasswordReset(e) {
+  e.preventDefault();
+  if (!window.ProductStore || !window.ProductStore.isCloudEnabled()) {
+    alert(isAr ? 'هذه الميزة تحتاج اتصال بقاعدة بيانات سحابية (Supabase).' : 'This feature requires cloud mode (Supabase connected).');
+    return;
+  }
+  var email = document.getElementById('inEmail').value.trim();
+  if (!email) {
+    alert(isAr ? 'اكتب بريدك الإلكتروني في الحقل أعلاه أولاً' : 'Enter your email in the field above first');
+    return;
+  }
+  var res = await window.ProductStore.requestPasswordReset(email);
+  if (res.success) {
+    alert(isAr ? 'تم إرسال رابط إعادة تعيين كلمة المرور إلى بريدك الإلكتروني. تفقّد صندوق الوارد (ومجلد الرسائل غير المرغوبة).' : 'A password reset link was sent to your email. Check your inbox (and spam folder).');
+  } else {
+    alert(res.error);
+  }
+}
+
+async function submitNewPassword(e) {
+  e.preventDefault();
+  var p1 = document.getElementById('newPass1').value;
+  var p2 = document.getElementById('newPass2').value;
+  if (p1.length < 6) {
+    alert(isAr ? 'كلمة المرور يجب أن تكون 6 أحرف على الأقل' : 'Password must be at least 6 characters');
+    return;
+  }
+  if (p1 !== p2) {
+    alert(isAr ? 'كلمتا المرور غير متطابقتين' : 'Passwords do not match');
+    return;
+  }
+  var res = await window.ProductStore.updatePassword(p1);
+  if (res.success) {
+    document.getElementById('resetPasswordView').style.display = 'none';
+    showToast(isAr ? 'تم تغيير كلمة المرور بنجاح' : 'Password updated successfully');
+    checkAuth();
+  } else {
+    alert(res.error);
+  }
+}
+
 function toggleAdminLang() {
   isAr = !isAr;
   localStorage.setItem('admin_lang', isAr ? 'ar' : 'en');
@@ -1032,6 +1096,13 @@ function applyAdminLanguage() {
   document.getElementById('statLbl3').textContent = isAr ? 'المحجر الرئيسي' : 'PRIMARY QUARRY';
   document.getElementById('statLbl4').textContent = isAr ? 'المخزون المتوفر' : 'STOCK INVENTORY';
   document.getElementById('statQuarryLoc').textContent = isAr ? 'عبري' : 'IBRI';
+
+  document.getElementById('lblForgotPassword').textContent = isAr ? 'نسيت كلمة المرور؟' : 'Forgot password?';
+  document.getElementById('lblResetTitle').textContent = isAr ? 'تعيين كلمة مرور جديدة' : 'Set a New Password';
+  document.getElementById('lblResetSub').textContent = isAr ? 'أدخل كلمة المرور الجديدة لحسابك' : 'Enter a new password for your account';
+  document.getElementById('lblNewPass1').textContent = isAr ? 'كلمة المرور الجديدة' : 'New Password';
+  document.getElementById('lblNewPass2').textContent = isAr ? 'تأكيد كلمة المرور' : 'Confirm Password';
+  document.getElementById('lblResetSubmit').textContent = isAr ? 'حفظ كلمة المرور' : 'Save Password';
 
   updateLoginModeNotice();
   renderDashboardList();
@@ -1377,6 +1448,15 @@ window.addEventListener('gsr_settings_updated', function () {
     renderDashboardList();
   }
 });
+if (window.ProductStore && window.ProductStore.isCloudEnabled()) {
+  window.ProductStore.onAuthEvent(function (event) {
+    if (event === 'PASSWORD_RECOVERY') {
+      document.getElementById('loginView').style.display = 'none';
+      document.getElementById('dashboardView').style.display = 'none';
+      document.getElementById('resetPasswordView').style.display = 'grid';
+    }
+  });
+}
 </script>
 </body>
 </html>
